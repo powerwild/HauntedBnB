@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     updateAt: DataTypes.DATE
   }, {});
   Message.associate = function(models) {
-    Message.belongsTo(models.User, {foreignKey: recipientId});
-    Message.belongsTo(models.User, {foreignKey: senderId});
-    Message.belongsTo(models.Spot, {foreignKey: spotId});
+    Message.belongsTo(models.User, {foreignKey: 'recipientId'});
+    Message.belongsTo(models.User, {foreignKey: 'senderId'});
+    Message.belongsTo(models.Spot, {foreignKey: 'spotId'});
   };
   return Message;
 };

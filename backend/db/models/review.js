@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     updateAt: DataTypes.DATE
   }, {});
   Review.associate = function(models) {
-    Review.belongsTo(models.User, {foreignKey: userId});
-    Review.belongsTo(models.Spot, {foreignKey: spotId});
+    Review.belongsTo(models.User, {foreignKey: 'userId'});
+    Review.belongsTo(models.Spot, {foreignKey: 'spotId'});
   };
   return Review;
 };

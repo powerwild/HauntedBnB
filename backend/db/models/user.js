@@ -68,11 +68,11 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(user.id);
   };
   User.associate = function(models) {
-    User.hasMany(models.Spot, {foreignKey: userId});
-    User.hasMany(models.Booking, {foreignKey: userId});
-    User.hasMany(models.Review, {foreignKey: userId});
-    User.hasMany(models.Message, {foreignKey: recipientId});
-    User.hasMany(models.Message, {foreingKey: senderId});
+    User.hasMany(models.Spot, {foreignKey: 'userId'});
+    User.hasMany(models.Booking, {foreignKey: 'userId'});
+    User.hasMany(models.Review, {foreignKey: 'userId'});
+    User.hasMany(models.Message, {foreignKey: 'recipientId'});
+    User.hasMany(models.Message, {foreingKey: 'senderId'});
   };
   return User;
 };

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     updateAt: DataTypes.DATE
   }, {});
   Image.associate = function(models) {
-    Image.belongTo(models.Spot, {foreignKey: spotId});
+    Image.belongsTo(models.Spot, {foreignKey: 'spotId'});
   };
   return Image;
 };
