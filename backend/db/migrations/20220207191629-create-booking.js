@@ -18,11 +18,17 @@ module.exports = {
       },
       startDate: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        validate: {
+          isDate: true
+        }
       },
       endDate: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        validate: {
+          isDate: true
+        }
       },
       createdAt: {
         allowNull: false,
@@ -34,7 +40,8 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('now')
       }
-    });
+    }
+    );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Bookings');

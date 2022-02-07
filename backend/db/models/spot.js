@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     state: DataTypes.STRING,
     country: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
+    price: DataTypes.DECIMAL(6, 2),
     createdAt: DataTypes.DATE,
     updateAt: DataTypes.DATE
   }, {});

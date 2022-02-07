@@ -18,7 +18,10 @@ module.exports = {
       },
       review: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        validate: {
+          min: 4
+        }
       },
       createdAt: {
         allowNull: false,
