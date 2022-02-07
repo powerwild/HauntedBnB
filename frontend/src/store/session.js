@@ -39,7 +39,6 @@ export const signupThunk = (username, email, password) => async (dispatch) => {
     });
     if (userJSON.ok) {
         const data = await userJSON.json();
-        console.log(data)
         dispatch(getSession(data.user));
         return data.user;
     }
