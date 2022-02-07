@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+
+}
+
+#root {
+    width: 98vw;
+    height: 97vh;
+}
+
+ul {
+    list-style: none;
+}
+
+.user-form-div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.33);
+}
+.signup-form {}
+.login-form {}
+
+.user-form-label {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}

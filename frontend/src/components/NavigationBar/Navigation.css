@@ -1,0 +1,60 @@
+.nav-bar {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: space-between;
+    padding: 0 2%;
+    align-items: center;
+}
+.nav-bar > * {
+    display: flex;
+    align-items: center;
+}
+
+.app-nav {
+    width: 30%;
+    color: lightgreen;
+    font-size: larger;
+}
+.nav-icon {
+    font-size: x-large;
+}
+.home-nav {
+    text-decoration: none;
+    margin-left: 5%;
+}
+
+.search-bar {
+    width: 40%;
+    height: 50%;
+}
+
+.user-btns {
+    width: 30%;
+}
+
+
+.profile-btn {
+    height: 70%;
+    width: 5%;
+    justify-content: center;
+    font-size: larger;
+    color: lightgreen;
+    background-color: darkslategray;
+    margin-right: 5%;
+}
+.profile-icon {}
+.dropdown {
+    position: absolute;
+    flex-direction: column;
+    top: 8%;
+    right: 2.5%;
+    font-size: small;
+}
+.dropdown > * {
+    border: 2px solid lightgray;
+    background-color: darkslategrey;
+}
+.logout {
+    background-color: rgb(216, 78, 78);
+}
