@@ -18,6 +18,7 @@ const SignupForm = () => {
 
     const handleSubmit = async (e) =>  {
         e.preventDefault();
+        setValidationErrors([]);
         let errors = [];
         if (username.length < 4 || username.length > 30) errors.push('Username must be more than 4 but less than 30.');
         if (email.length < 1) errors.push('Please provide an email.');
