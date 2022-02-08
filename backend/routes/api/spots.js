@@ -66,7 +66,12 @@ router.route('/:id')
     await spot.save();
     res.json({spot});
 }))
-.delete();
+.delete(asyncHandler( async (req, res) => {
+    const spotId = req.params.id;
+    const spot = await db.Spot.findByPk(+spotId);
+    await spot.destroy();
+    res.json({msg: 'Deletion Successful'});
+}));
 
 
 module.exports = router;

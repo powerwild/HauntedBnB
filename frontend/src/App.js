@@ -3,6 +3,7 @@ import Navigation from "./components/NavigationBar";
 import { restoreUserSessionThunk } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import SplashPage from "./components/SplashPage";
 
 
 
@@ -21,7 +22,7 @@ function App() {
       {pageRendered &&
         <>
           <Navigation pageRendered={pageRendered} />
-          <h2>Splash</h2>
+          <SplashPage />
         </>
       }
     </>

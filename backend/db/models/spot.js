@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Spot.associate = function(models) {
     Spot.belongsTo(models.User, {foreignKey: 'userId'});
-    Spot.hasMany(models.Image, {foreignKey: 'spotId'});
-    Spot.hasMany(models.Booking, {foreignKey: 'spotId'});
-    Spot.hasMany(models.Review, {foreignKey: 'spotId'});
-    Spot.hasMany(models.Message, {foreignKey: 'spotId'});
+    Spot.hasMany(models.Image, {foreignKey: 'spotId', onDelete: 'cascade'});
+    Spot.hasMany(models.Booking, {foreignKey: 'spotId', onDelete: 'cascade'});
+    Spot.hasMany(models.Review, {foreignKey: 'spotId', onDelete: 'cascade'});
+    Spot.hasMany(models.Message, {foreignKey: 'spotId', onDelete: 'cascade'});
   };
   return Spot;
 };

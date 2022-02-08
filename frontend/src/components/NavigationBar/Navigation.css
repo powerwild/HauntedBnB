@@ -5,6 +5,8 @@
     justify-content: space-between;
     padding: 0 2%;
     align-items: center;
+    border: 2px solid grey;
+    background-color: rgba(0, 0, 0.6);
 }
 .nav-bar > * {
     display: flex;
@@ -12,7 +14,7 @@
 }
 
 .app-nav {
-    width: 30%;
+    width: 15%;
     color: lightgreen;
     font-size: larger;
 }
@@ -43,18 +45,15 @@
     background-color: darkslategray;
     margin-right: 5%;
 }
-.profile-icon {}
+
 .dropdown {
     position: absolute;
     flex-direction: column;
     top: 8%;
-    right: 2.5%;
+    right: 6%;
     font-size: small;
 }
 .dropdown > * {
     border: 2px solid lightgray;
     background-color: darkslategrey;
-}
-.logout {
-    background-color: rgb(216, 78, 78);
 }

@@ -1,0 +1,16 @@
+.splash-page {
+    background-image: url('https://edinburghguide.com/sites/default/files/styles/large/public/EG6_images/reviews/greyfriars-3.jpg?itok=N22PzJv7');
+    height: 90%;
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-greeeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
