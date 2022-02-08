@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     spotId: DataTypes.INTEGER,
     review: DataTypes.TEXT,
     createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
   }, {});
   Review.associate = function(models) {
     Review.belongsTo(models.User, {foreignKey: 'userId'});

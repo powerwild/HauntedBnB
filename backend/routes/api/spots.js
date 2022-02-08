@@ -6,21 +6,66 @@ const router = require('express').Router();
 
 router.route('/')
 .get( asyncHandler( async (req, res) => {
-    const spots = db.Spot.findAll({
+    const spots = await db.Spot.findAll({
         include: {
-            model: Image,
-            where: {
-                spotId: Sequelize.col('spot.id')
-            }
+            model: db.Image
         }
     });
     return res.json({spots});
 }))
-.post();
+.post( asyncHandler( async (req, res) => {
+    const { userId, name, description, address, city, state, country, price, images} = req.body;
+    const newSpot = await db.Spot.create({
+        userId,
+        name,
+        description,
+        address,
+        city,
+        state,
+        country,
+        price
+    });
+
+    asyncHandler(images.forEach(async image => {
+        await db.Image.create({
+            spotId: newSpot.id,
+            url: image
+        })
+    }))
+
+    const spots = await db.Spot.findAll({
+        include: {
+            model: db.Image
+        }
+    });
+    res.json({spots})
+}));
 
 router.route('/:id')
-.get()
-.put()
+.get( asyncHandler(async (req, res) => {
+    const spotId = req.params.id;
+    const spot = await db.Spot.findOne({
+        where: {id: +spotId},
+        include: {model: db.Review}
+    });
+    res.json({spot});
+}))
+.put( asyncHandler(async (req, res) => {
+    const spotId = req.params.id;
+    const { userId, name, description, address, city, state, country, price} = req.body;
+    const spot = await db.Spot.findByPk(spotId);
+    spot.userId = userId;
+    spot.name = name;
+    spot.description = description;
+    spot.address =address;
+    spot.city = city;
+    spot.state = state;
+    spot.country = country;
+    spot.price = price;
+
+    await spot.save();
+    res.json({spot});
+}))
 .delete();
 
 

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: { isDate: true }
     },
     createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
   }, {
     validate: {
     startDateFirst() {

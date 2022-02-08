@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     spotId: DataTypes.INTEGER,
     message: DataTypes.TEXT,
     createdAt: DataTypes.DATE,
-    updateAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE
   }, {});
   Message.associate = function(models) {
     Message.belongsTo(models.User, {foreignKey: 'recipientId'});
