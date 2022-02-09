@@ -45,8 +45,12 @@ const ProfileButton = ({username, email}) => {
                 <i className="fas fa-user-secret" id='profile-icon'/>
                 {dropdown && (
                     <ul className='dropdown'>
-                        <li>{username}</li>
-                        <li>{email}</li>
+                        <li onClick={e => e.stopPropagation()}>{username}</li>
+                        <li onClick={e => e.stopPropagation()}>{email}</li>
+                        <li onClick={e => e.stopPropagation()}>My Haunts</li>
+                        <li onClick={e => e.stopPropagation()}>My Bookings</li>
+                        <li onClick={e => e.stopPropagation()}>My Messages</li>
+                        <li onClick={e => e.stopPropagation()}>My Reviews</li>
                         <li onClick={e => logout(e)}>Log Out</li>
                     </ul>
                 )}
