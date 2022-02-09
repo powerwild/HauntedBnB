@@ -8,7 +8,7 @@ const SignupFormModal = () => {
 
     return (
         <>
-            <button className='login-btn' onClick={() => setRenderModal(true)}>Sign Up</button>
+            <button className='login-btn button' onClick={() => setRenderModal(true)}>Sign Up</button>
             {renderModal && (
                 <FormModal onClose={() => setRenderModal(false)}>
                     <SignupForm />

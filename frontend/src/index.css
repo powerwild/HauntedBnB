@@ -26,3 +26,8 @@ ul {
     display: flex;
     justify-content: space-between;
 }
+
+.button {
+    background-color: lightgreen;
+    border-radius: 5px;
+}

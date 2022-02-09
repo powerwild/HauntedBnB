@@ -13,7 +13,7 @@ const router = require('express').Router();
 router.use('/session', sessionRouter);
 router.use('/users', userRouter);
 
-// router.use(requireAuth);
+router.use(requireAuth);
 
 router.use('/spots', spotRouter);
 router.use('/bookings', bookingRouter);

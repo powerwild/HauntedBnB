@@ -21,7 +21,7 @@ const Navigation = ({ pageRendered }) => {
     } else {
         userButtons = (
             <>
-                <button onClick={(e) => demoSignIn(e)}>Demo</button>
+                <button className='button' onClick={(e) => demoSignIn(e)}>Demo</button>
                 <LoginFormModal />
                 <SignupFormModal />
             </>

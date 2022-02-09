@@ -32,13 +32,9 @@ router.route('/')
             url: image
         })
     }))
+    const spotImages = await db.Image.findAll({where: {spotId: newSpot.id}})
 
-    const spots = await db.Spot.findAll({
-        include: {
-            model: db.Image
-        }
-    });
-    res.json({spots})
+    res.json({newSpot, spotImages});
 }));
 
 router.route('/:id')
