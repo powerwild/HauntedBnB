@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
 import { getAllSpotsThunk } from '../../store/spots';
 import { useDispatch } from 'react-redux';
+import NewHauntModal from '../NewHauntsFormPage';
 import './Spots.css';
 
 
@@ -19,7 +20,10 @@ const SpotsPage = ({ sessionUser }) => {
 
     return readyToRender && (
         <>
-            <h1>Browse Our Haunts</h1>
+            <div className='spots-title-div'>
+                <h1>Browse Our Haunts</h1>
+                <NewHauntModal />
+            </div>
             <div className='spots-page'>
                 {Object.values(spots).map((spotDets, i) => {
                     let firstPic = spotDets.spot.imageIndex[0];

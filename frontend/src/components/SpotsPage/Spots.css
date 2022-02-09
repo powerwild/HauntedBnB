@@ -8,6 +8,12 @@ p {
     display: flex;
     flex-wrap: wrap;
 }
+
+.spots-title-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .spot-divs {
     width: 50%;
     display: flex;

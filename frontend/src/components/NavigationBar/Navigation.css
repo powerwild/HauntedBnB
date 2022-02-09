@@ -27,11 +27,19 @@
     color: orange;
 }
 
-.search-bar {
+.search-label {
     width: 40%;
+}
+.search-bar {
+    width: 100%;
     height: 50%;
 }
 
+.user-btns-div {
+    width: 15%;
+    display: flex;
+    justify-content: flex-end;
+}
 .user-btns {
     width: 30%;
 }
@@ -39,19 +47,18 @@
 
 .profile-btn {
     height: 70%;
-    width: 5%;
+    width: 25%;
     justify-content: center;
     font-size: larger;
     color: lightgreen;
     background-color: darkslategray;
-    margin-right: 5%;
 }
 
 .dropdown {
     position: absolute;
     flex-direction: column;
     top: 8%;
-    right: 6%;
+    right: 1%;
     font-size: small;
 }
 .dropdown > * {

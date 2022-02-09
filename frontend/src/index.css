@@ -11,6 +11,9 @@
 ul {
     list-style: none;
 }
+h1 {
+    text-align: center;
+}
 
 .user-form-div {
     position: absolute;

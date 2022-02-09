@@ -14,9 +14,9 @@ router.route('/')
     return res.json({spots});
 }))
 .post( asyncHandler( async (req, res) => {
-    const { userId, name, description, address, city, state, country, price, images} = req.body;
+    const { name, description, address, city, state, country, price, images} = req.body;
     const newSpot = await db.Spot.create({
-        userId,
+        userId: req.user.id,
         name,
         description,
         address,
@@ -34,7 +34,7 @@ router.route('/')
     }))
     const spotImages = await db.Image.findAll({where: {spotId: newSpot.id}})
 
-    res.json({newSpot, spotImages});
+    return res.json({newSpot, spotImages});
 }));
 
 router.route('/:id')

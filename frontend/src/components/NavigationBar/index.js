@@ -47,8 +47,13 @@ const Navigation = ({ pageRendered }) => {
                     <div className='nav-icon'><i className="fas fa-ghost" /></div>
                     <NavLink className='home-nav' to='/'>HauntedBnB</NavLink>
                 </div>
-                <input type='text' className='search-bar'></input>
-                {pageRendered && userButtons}
+                <label htmlFor='search' className='search-label'>
+                    <i className="fa-solid fa-magnifying-glass-location" />
+                    <input type='text' name='search' className='search-bar' />
+                </label>
+                <div className='user-btns-div'>
+                    {pageRendered && userButtons}
+                </div>
             </nav>
         </>
     )
