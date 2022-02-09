@@ -3,6 +3,7 @@ import { FormModal } from "../../context/Modal";
 import { useState } from "react";
 
 
+
 const NewHauntModal = () => {
     const [ renderModal, setRenderModal ] = useState(false);
 

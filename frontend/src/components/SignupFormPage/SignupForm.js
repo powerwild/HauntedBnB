@@ -19,6 +19,16 @@ const SignupForm = () => {
     const handleSubmit = async (e) =>  {
         e.preventDefault();
         setValidationErrors([]);
+
+        return dispatch(signupThunk(username, email, password))
+        .catch( async (res) => {
+                const data = await res.json();
+                if (data?.errors) setValidationErrors(data.errors);
+            })
+
+        };
+
+    useEffect(() => {
         let errors = [];
         if (username.length < 4 || username.length > 30) errors.push('Username must be more than 4 but less than 30.');
         if (email.length < 1) errors.push('Please provide an email.');
@@ -28,14 +38,9 @@ const SignupForm = () => {
             setValidationErrors(errors);
             return;
         }
+        return setValidationErrors([]);
+    }, [username, email, password, confirmPassword])
 
-        return dispatch(signupThunk(username, email, password))
-            .catch( async (res) => {
-                const data = await res.json();
-                if (data?.errors) setValidationErrors(data.errors);
-        })
-
-    };
 
 
     return (

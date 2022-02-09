@@ -15,6 +15,7 @@ router.route('/')
 }))
 .post( asyncHandler( async (req, res) => {
     const { name, description, address, city, state, country, price, images} = req.body;
+    console.log(images)
     const newSpot = await db.Spot.create({
         userId: req.user.id,
         name,

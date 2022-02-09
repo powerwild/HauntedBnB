@@ -34,3 +34,7 @@
 
 
 9. Splash Page has a demo user sign in button or you can create your own user via the sign up modal.
+
+
+
+

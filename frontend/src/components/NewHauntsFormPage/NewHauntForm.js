@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addSpotThunk } from "../../store/spots";
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import './NewHaunt.css';
 
 
@@ -18,6 +19,7 @@ const NewHauntForm = () => {
     const [ validationErrors, setValidationErrors ] = useState([]);
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const addImages = (e) => {
         e.preventDefault();
@@ -29,28 +31,39 @@ const NewHauntForm = () => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);
+        const newHaunt = await dispatch(addSpotThunk({name, description, address, city, state, country, price, images}))
+            .catch( async (response) => {
+                const data = await response.json();
+                if (data?.errors) setValidationErrors(data.errors);
+            });
+        if (newHaunt.ok) {
+            let haunt = newHaunt.json();
+            return history.push(`/spots/${haunt.id}`);
+        }
+    }
+
+    useEffect(() => {
         let errors = [];
         if (name.length < 3) errors.push('Name must be at least 3 characters long.');
-        if (description.length < 5) errors.push('Please provide a decent description.');
         if (address.length < 5) errors.push('Please provide a valid address.');
         if (city.length < 3) errors.push('Please provide a valid city.');
         if (state.length < 3) errors.push('Please provide a valid state.');
         if (country.length < 3) errors.push('Please provide a valid country.');
         if (price < 1) errors.push('Please provide a valid price per night.');
+        if (images.length < 1) errors.push('Please provide an image url.')
+        if (description.length < 5) errors.push('Please provide a decent description.');
         if (errors.length > 0) {
             setValidationErrors(errors);
             return;
         }
-        return dispatch(addSpotThunk({name, description, address, city, state, country, price, images}))
-            .catch( async (res) => {
-                const data = await res.json();
-                if (data?.errors) setValidationErrors(data.errors);
-            })
-    }
+        return setValidationErrors([]);
+
+    }, [name, description, address, city, state, country, price, images.length])
+
 
     return (
         <form className='new-haunt-form' onSubmit={(e) => handleSubmit(e)}>
@@ -120,7 +133,7 @@ const NewHauntForm = () => {
                 />
             </label>
             <label htmlFor='images' className='haunt-form-label'>
-                New Image (must be added one at a time and in url format)
+                New Image (add images one at a time)
                 <input name='images'
                     type= 'text'
                     placeholder='images'

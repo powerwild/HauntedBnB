@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSessionThunk } from '../../store/session';
 import { useDispatch } from 'react-redux';
 import './LoginForm.css';
@@ -15,6 +15,14 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setValidationErrors([]);
+        return dispatch(getSessionThunk(credential, password))
+        .catch( async (res) => {
+            const data = await res.json();
+            if (data?.errors) setValidationErrors(data.errors);
+        })
+    }
+
+    useEffect(() => {
         let errors = []
         if (credential.length < 3) errors.push('Must provide a valid email or username.');
         if (password.length < 6) errors.push('Must provide a valid password.');
@@ -22,14 +30,8 @@ const LoginForm = () => {
             setValidationErrors(errors);
             return;
         }
-        return dispatch(getSessionThunk(credential, password))
-            .catch( async (res) => {
-                const data = await res.json();
-                if (data?.errors) setValidationErrors(data.errors);
-            })
-    }
-
-
+        return setValidationErrors([]);
+    }, [credential, password])
 
     return (
 
