@@ -39,6 +39,8 @@ router.route('/')
             model: db.Image
         }
     });
+    console.log(spot)
+    console.log(spot.Images)
     return res.json(spot);
 }));
 

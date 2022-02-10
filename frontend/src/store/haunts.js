@@ -25,8 +25,8 @@ export const addHauntThunk = (spot) => async dispatch => {
         const spot = await newSpotJSON.json();
         console.log(spot)
         await dispatch(addHaunt(spot));
+        return spot;
     }
-    return newSpotJSON;
 }
 
 const getAllHaunts = (spots) => {

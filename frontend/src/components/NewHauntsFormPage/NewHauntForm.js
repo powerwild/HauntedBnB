@@ -41,6 +41,7 @@ const NewHauntForm = ({onClose}) => {
         e.stopPropagation();
         setValidationErrors([]);
         const spot = await dispatch(addHauntThunk({name, description, address, city, state, country, price, images}))
+        console.log(spot)
         if (spot) return history.push(`/spots/${spot.id}`)
         }
 

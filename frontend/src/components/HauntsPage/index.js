@@ -11,7 +11,7 @@ const HauntsPage = () => {
 
 
 
-    return haunts && (
+    return  (
         <>
             <div className='spots-title-div'>
                 <h1>Browse Our Haunts</h1>
