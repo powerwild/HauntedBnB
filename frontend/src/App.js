@@ -15,19 +15,14 @@ function App() {
   const haunts = useSelector(state => state.haunts);
 
   useEffect(() => {
-    if (Object.keys(haunts)?.length || !sessionUser.user) {
+    if (!sessionUser.user) {
       dispatch(restoreUserSessionThunk()).then(() => setPageRendered(true))
-    } else {
-      dispatch(restoreUserSessionThunk());
-      dispatch(getAllHauntsThunk()).then(() => setPageRendered(true));
     }
   }, []);
 
   useEffect(() => {
-    dispatch(getAllHauntsThunk())
-  }, [sessionUser.user])
-
-
+    if (sessionUser.user) dispatch(getAllHauntsThunk());
+  }, [pageRendered])
 
   return (
     <>

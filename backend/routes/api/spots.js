@@ -27,14 +27,14 @@ router.route('/')
         price
     });
 
-    images.forEach(async image => {
-        await db.Image.create({
+    await images.forEach(async image => {
+            await db.Image.create({
             spotId: newSpot.id,
             url: image
         })
     })
     const spot = await db.Spot.findOne({
-        where: {userId: req.user.id },
+        where: { id: newSpot.id },
         include: {
             model: db.Image
         }

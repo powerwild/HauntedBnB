@@ -7,6 +7,7 @@ const DELETE_ONE = 'spots/DELETE_ONE';
 
 
 const addHaunt = (spot) => {
+    console.log(spot)
     const images = [...spot.Images];
     delete spot.Images;
     return {

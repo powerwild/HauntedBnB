@@ -6,7 +6,7 @@ import './NewHaunt.css';
 
 
 
-const NewHauntForm = ({setNewSpot}) => {
+const NewHauntForm = ({onClose}) => {
     const [ name, setName ] = useState('');
     const [ description, setDescription ] = useState('');
     const [ address, setAddress ] = useState('');
@@ -19,7 +19,7 @@ const NewHauntForm = ({setNewSpot}) => {
     const [ validationErrors, setValidationErrors ] = useState([]);
 
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
 
     const addImages = (e) => {
         e.preventDefault();
@@ -36,16 +36,13 @@ const NewHauntForm = ({setNewSpot}) => {
     }
 
 
-    const handleSubmit =  (e) => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);
-        return dispatch(addHauntThunk({name, description, address, city, state, country, price, images}))
-        // .catch( async (res) => {
-        //     const data = await res.json();
-        //     if (data?.errors) setValidationErrors(data.errors);
-        // });
-    }
+        const spot = await dispatch(addHauntThunk({name, description, address, city, state, country, price, images}))
+        if (spot) return history.push(`/spots/${spot.id}`)
+        }
 
     useEffect(() => {
         let errors = [];
