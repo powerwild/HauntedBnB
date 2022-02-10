@@ -1,4 +1,4 @@
-import { deleteSpotThunk } from "../../store/spots";
+import { deleteHauntThunk } from "../../store/haunts";
 import { useDispatch } from "react-redux";
 
 const DeleteHauntForm = ({spot}) => {
@@ -7,7 +7,7 @@ const DeleteHauntForm = ({spot}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        dispatch(deleteSpotThunk(spot.id))
+        dispatch(deleteHauntThunk(spot.id))
     }
 
     return (

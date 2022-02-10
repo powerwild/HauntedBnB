@@ -6,85 +6,88 @@ const UPDATE_ONE = 'spots/UPDATE_ONE';
 const DELETE_ONE = 'spots/DELETE_ONE';
 
 
-const addSpot = (spot, images) => {
+const addHaunt = (spot) => {
+    const images = [...spot.Images];
+    delete spot.Images;
     return {
         type: ADD_NEW,
         data: {spot, images}
     }
 }
 
-export const addSpotThunk = (spot) => async dispatch => {
+export const addHauntThunk = (spot) => async dispatch => {
     const newSpotJSON = await csrfFetch('/api/spots', {
         method: 'POST',
         body: JSON.stringify(spot)
     })
     if (newSpotJSON.ok) {
         const spot = await newSpotJSON.json();
-        dispatch(addSpot(spot.newSpot, spot.spotImages));
-        return spot.newSpot;
+        console.log(spot)
+        await dispatch(addHaunt(spot));
     }
+    return newSpotJSON;
 }
 
-const getAllSpots = (spots) => {
+const getAllHaunts = (spots) => {
     return {
         type: GET_ALL,
         spots
     }
 }
-export const getAllSpotsThunk = () => async dispatch => {
-    const allSpotsJSON = await csrfFetch('/api/spots', {
+export const getAllHauntsThunk = () => async dispatch => {
+    const spotsJSON = await csrfFetch('/api/spots', {
         method: 'GET'
     });
-    if (allSpotsJSON.ok) {
-        const allSpots = await allSpotsJSON.json();
-        dispatch(getAllSpots(allSpots.spots));
-        return allSpots;
+    if (spotsJSON.ok) {
+        const spots = await spotsJSON.json();
+        await dispatch(getAllHaunts(spots));
     }
+    return spotsJSON;
 }
 
 
-const updateSpot = (newSpot) => {
+const updateHaunt = (spot) => {
     return {
         type: UPDATE_ONE,
-        newSpot
+        spot
     }
 }
 
-export const updateSpotThunk = (spot) => async dispatch => {
+export const updateHauntThunk = (spot) => async dispatch => {
     const updatedSpotJSON = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         body: JSON.stringify(spot)
     });
     if (updatedSpotJSON.ok) {
         const updatedSpot = await updatedSpotJSON.json();
-        dispatch(updateSpot(updatedSpot));
-        return updatedSpot;
+        await dispatch(updateHaunt(updatedSpot));
     }
+    return updatedSpotJSON;
 }
 
 
-const deleteSpot = (id) => {
+const deleteHaunt = (id) => {
     return {
         type: DELETE_ONE,
         id
     }
 };
 
-export const deleteSpotThunk = (removeAtId) => async dispatch => {
+export const deleteHauntThunk = (removeAtId) => async dispatch => {
     const deletedSpot = await csrfFetch(`/api/spots/${removeAtId}`, {method: 'DELETE'});
     if (deletedSpot.ok) {
-        const message = deletedSpot.json();
-        alert(message.msg);
-        dispatch(deleteSpot(removeAtId));
-        return;
+        const message = await deletedSpot.json();
+
+        await dispatch(deleteHaunt(removeAtId));
     }
+    return deletedSpot;
 };
 
 
 
 const initialState = {};
 
-const spotReducer = (state = initialState, action) => {
+const hauntReducer = (state = initialState, action) => {
     let newState = { ...state };
     switch (action.type) {
         case ADD_NEW:
@@ -94,17 +97,11 @@ const spotReducer = (state = initialState, action) => {
             action.spots.forEach(spot => {
                 let imageArr = [...spot.Images];
                 delete spot.Images;
-                spot.imageIndex = [];
-                let imageObj = {};
-                imageArr.forEach(image => {
-                    imageObj[image.id] = image
-                    spot.imageIndex.push(image.id);
-                });
-                newState[spot.id] = {spot, images: imageObj};
+                newState[spot.id] = {spot, images: imageArr};
             });
             return newState;
         case UPDATE_ONE:
-            newState[action.newSpot.id].spot = action.spot;
+            newState[action.spot.id].spot = action.spot;
             return newState;
         case DELETE_ONE:
             delete newState[action.id];
@@ -116,4 +113,4 @@ const spotReducer = (state = initialState, action) => {
 }
 
 
-export default spotReducer;
+export default hauntReducer;

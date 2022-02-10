@@ -6,15 +6,17 @@ import { useState } from "react";
 
 const NewHauntModal = () => {
     const [ renderModal, setRenderModal ] = useState(false);
+    const [ newSpot, setNewSpot ] = useState(null);
 
     return (
         <>
             <button className='new-haunt-btn' onClick={() => setRenderModal(true)}>Add New Haunt</button>
-            {renderModal && (
+            {renderModal ? (
                 <FormModal onClose={() => setRenderModal(false)}>
-                    <NewHauntForm />
+                    <NewHauntForm setNewSpot={setNewSpot} />
                 </FormModal>
-            )}
+                ) : null
+            }
         </>
     )
 }

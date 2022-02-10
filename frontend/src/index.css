@@ -6,6 +6,11 @@
 #root {
     width: 98vw;
     height: 97vh;
+    /* background-image: url('https://images.designtrends.com/wp-content/uploads/2016/01/02123924/Creepy-Trees-Fog-Background.jpg'); */
+    background-size: 100%;
+
+    /* background-image: url('https://ak.picdn.net/shutterstock/videos/1019673877/thumb/1.jpg');*/
+
 }
 
 ul {

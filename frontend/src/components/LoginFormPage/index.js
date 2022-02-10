@@ -11,11 +11,12 @@ const LoginFormModal = () => {
     return (
         <>
             <button className='login-btn button' onClick={() => setRenderModal(true)}>Log In</button>
-            {renderModal && (
+            {renderModal ? (
                 <FormModal onClose={() => setRenderModal(false)}>
                     <LoginForm />
                 </FormModal>
-            )}
+                ) : null
+            }
         </>
 
     )

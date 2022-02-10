@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { addSpotThunk } from "../../store/spots";
+import { addHauntThunk } from "../../store/haunts";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import './NewHaunt.css';
 
 
 
-const NewHauntForm = () => {
+const NewHauntForm = ({setNewSpot}) => {
     const [ name, setName ] = useState('');
     const [ description, setDescription ] = useState('');
     const [ address, setAddress ] = useState('');
@@ -19,31 +19,31 @@ const NewHauntForm = () => {
     const [ validationErrors, setValidationErrors ] = useState([]);
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     const addImages = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        let imageArr = [...images];
-        imageArr.push(newImage);
-        setImages(imageArr);
-        setNewImage('');
+        if (newImage.startsWith('http')) {
+            let imageArr = [...images];
+            imageArr.push(newImage);
+            setImages(imageArr);
+        } else {
+            setValidationErrors([...validationErrors, 'Invalid image url'])
+            setNewImage('');
+        }
     }
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);
-        const newHaunt = await dispatch(addSpotThunk({name, description, address, city, state, country, price, images}))
-            .catch( async (response) => {
-                const data = await response.json();
-                if (data?.errors) setValidationErrors(data.errors);
-            });
-        if (newHaunt.ok) {
-            let haunt = newHaunt.json();
-            return history.push(`/spots/${haunt.id}`);
-        }
+        return dispatch(addHauntThunk({name, description, address, city, state, country, price, images}))
+        // .catch( async (res) => {
+        //     const data = await res.json();
+        //     if (data?.errors) setValidationErrors(data.errors);
+        // });
     }
 
     useEffect(() => {
@@ -136,7 +136,7 @@ const NewHauntForm = () => {
                 New Image (add images one at a time)
                 <input name='images'
                     type= 'text'
-                    placeholder='images'
+                    placeholder='image url'
                     value={newImage}
                     onChange={e => setNewImage(e.target.value)}
                 />

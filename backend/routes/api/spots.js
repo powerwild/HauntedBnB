@@ -11,11 +11,11 @@ router.route('/')
             model: db.Image
         }
     });
-    return res.json({spots});
+    return res.json(spots);
 }))
 .post( asyncHandler( async (req, res) => {
     const { name, description, address, city, state, country, price, images} = req.body;
-    console.log(images)
+
     const newSpot = await db.Spot.create({
         userId: req.user.id,
         name,
@@ -27,15 +27,19 @@ router.route('/')
         price
     });
 
-    asyncHandler(images.forEach(async image => {
+    images.forEach(async image => {
         await db.Image.create({
             spotId: newSpot.id,
             url: image
         })
-    }))
-    const spotImages = await db.Image.findAll({where: {spotId: newSpot.id}})
-
-    return res.json({newSpot, spotImages});
+    })
+    const spot = await db.Spot.findOne({
+        where: {userId: req.user.id },
+        include: {
+            model: db.Image
+        }
+    });
+    return res.json(spot);
 }));
 
 router.route('/:id')
@@ -49,19 +53,14 @@ router.route('/:id')
 }))
 .put( asyncHandler(async (req, res) => {
     const spotId = req.params.id;
-    const { userId, name, description, address, city, state, country, price} = req.body;
+    const { name, description, price} = req.body;
     const spot = await db.Spot.findByPk(spotId);
-    spot.userId = userId;
     spot.name = name;
     spot.description = description;
-    spot.address =address;
-    spot.city = city;
-    spot.state = state;
-    spot.country = country;
     spot.price = price;
 
     await spot.save();
-    res.json({spot});
+    res.json(spot);
 }))
 .delete(asyncHandler( async (req, res) => {
     const spotId = req.params.id;

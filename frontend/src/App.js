@@ -4,18 +4,23 @@ import { restoreUserSessionThunk } from "./store/session";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SplashPage from "./components/SplashPage";
-import SpotsPage from "./components/SpotsPage";
+import HauntsPage from "./components/HauntsPage";
 import HauntPage from "./components/HauntPage";
-import { getAllSpotsThunk } from './store/spots';
+import { getAllHauntsThunk } from './store/haunts';
 
 function App() {
   const dispatch = useDispatch();
   const [ pageRendered, setPageRendered ] = useState(false);
   const sessionUser = useSelector(state => state.session);
+  const haunts = useSelector(state => state.haunts);
 
   useEffect(() => {
-    dispatch(restoreUserSessionThunk());
-    dispatch(getAllSpotsThunk()).then(() => setPageRendered(true));
+    if (Object.keys(haunts)?.length) {
+      dispatch(restoreUserSessionThunk()).then(() => setPageRendered(true))
+    } else {
+      dispatch(restoreUserSessionThunk());
+      dispatch(getAllHauntsThunk()).then(() => setPageRendered(true));
+    }
   }, []);
 
 
@@ -28,7 +33,7 @@ function App() {
           {!sessionUser.user && <Redirect to='/' />}
           <Switch>
             <Route exact path='/spots'>
-              <SpotsPage sessionUser={sessionUser}/>
+              <HauntsPage sessionUser={sessionUser}/>
             </Route>
             <Route exact path='/spots/:spotId'>
               <HauntPage pageRendered={pageRendered} sessionUser={sessionUser}/>
