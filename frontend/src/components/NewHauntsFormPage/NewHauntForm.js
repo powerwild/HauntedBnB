@@ -28,6 +28,7 @@ const NewHauntForm = ({setNewSpot}) => {
             let imageArr = [...images];
             imageArr.push(newImage);
             setImages(imageArr);
+            setNewImage('');
         } else {
             setValidationErrors([...validationErrors, 'Invalid image url'])
             setNewImage('');

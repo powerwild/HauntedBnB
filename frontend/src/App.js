@@ -15,13 +15,17 @@ function App() {
   const haunts = useSelector(state => state.haunts);
 
   useEffect(() => {
-    if (Object.keys(haunts)?.length) {
+    if (Object.keys(haunts)?.length || !sessionUser.user) {
       dispatch(restoreUserSessionThunk()).then(() => setPageRendered(true))
     } else {
       dispatch(restoreUserSessionThunk());
       dispatch(getAllHauntsThunk()).then(() => setPageRendered(true));
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(getAllHauntsThunk())
+  }, [sessionUser.user])
 
 
 
@@ -32,14 +36,14 @@ function App() {
           <Navigation pageRendered={pageRendered} />
           {!sessionUser.user && <Redirect to='/' />}
           <Switch>
+            <Route exact path='/'>
+              <SplashPage sessionUser={sessionUser}/>
+            </Route>
             <Route exact path='/spots'>
               <HauntsPage sessionUser={sessionUser}/>
             </Route>
             <Route exact path='/spots/:spotId'>
               <HauntPage pageRendered={pageRendered} sessionUser={sessionUser}/>
-            </Route>
-            <Route path='/'>
-              <SplashPage sessionUser={sessionUser}/>
             </Route>
           </Switch>
         </>

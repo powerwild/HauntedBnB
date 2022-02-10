@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import './HauntPage.css';
 
 
-const EditHauntForm = ({spot, setRenderModal}) => {
+const EditHauntForm = ({spot, onClose}) => {
     const [ name, setName ] = useState(spot.name);
     const [ description, setDescription ] = useState(spot.description);
     const [ price, setPrice ] = useState(spot.price);
@@ -17,7 +17,7 @@ const EditHauntForm = ({spot, setRenderModal}) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);
-        return await dispatch(updateHauntThunk({id: spot.id, name, description, price})).then(() => setRenderModal(false))
+        return await dispatch(updateHauntThunk({id: spot.id, name, description, price})).then(onClose())
             // .catch( async (response) => {
             //     const data = await response.json();
             //     if (data?.errors) setValidationErrors(data.errors);
