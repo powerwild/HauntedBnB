@@ -1,0 +1,20 @@
+.pictures-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.haunt-details {
+
+}
+
+.edit-delete-spot-btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 3% 3%;
+}
+
+.spot-pictures {
+    width: 40%;
+    padding: 3% 3%;
+}

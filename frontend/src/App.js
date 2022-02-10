@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SplashPage from "./components/SplashPage";
 import SpotsPage from "./components/SpotsPage";
 import HauntPage from "./components/HauntPage";
-
+import { getAllSpotsThunk } from './store/spots';
 
 function App() {
   const dispatch = useDispatch();
@@ -14,8 +14,10 @@ function App() {
   const sessionUser = useSelector(state => state.session);
 
   useEffect(() => {
-    dispatch(restoreUserSessionThunk()).then(() => setPageRendered(true));
+    dispatch(restoreUserSessionThunk());
+    dispatch(getAllSpotsThunk()).then(() => setPageRendered(true));
   }, []);
+
 
 
   return (
@@ -29,7 +31,7 @@ function App() {
               <SpotsPage sessionUser={sessionUser}/>
             </Route>
             <Route exact path='/spots/:spotId'>
-              <HauntPage />
+              <HauntPage pageRendered={pageRendered} sessionUser={sessionUser}/>
             </Route>
             <Route path='/'>
               <SplashPage sessionUser={sessionUser}/>

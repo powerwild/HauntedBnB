@@ -71,7 +71,7 @@ const deleteSpot = (id) => {
 };
 
 export const deleteSpotThunk = (removeAtId) => async dispatch => {
-    const deletedSpot = await csrfFetch(`/api/spots/${removeAtId}`);
+    const deletedSpot = await csrfFetch(`/api/spots/${removeAtId}`, {method: 'DELETE'});
     if (deletedSpot.ok) {
         const message = deletedSpot.json();
         alert(message.msg);

@@ -1,24 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from "react";
-import { getAllSpotsThunk } from '../../store/spots';
-import { useDispatch } from 'react-redux';
 import NewHauntModal from '../NewHauntsFormPage';
 import './Spots.css';
 
 
 const SpotsPage = ({ sessionUser }) => {
     const spots = useSelector(state => state.spots);
-    const [ readyToRender, setReadyToRender ] = useState(false);
-    const dispatch = useDispatch();
-
-
-    useEffect(() => {
-         dispatch(getAllSpotsThunk()).then(() => setReadyToRender(true));
-    }, []);
 
 
 
-    return readyToRender && (
+    return spots && (
         <>
             <div className='spots-title-div'>
                 <h1>Browse Our Haunts</h1>

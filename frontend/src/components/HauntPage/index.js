@@ -1,21 +1,33 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import EditHauntModal from './EditHauntModal';
+import DeleteHauntModal from './DeleteHauntModal';
 import './HauntPage.css';
 
 
-const HauntPage = () => {
+const HauntPage = ({sessionUser}) => {
     const { spotId } = useParams();
     const spots = useSelector(state => state.spots);
-    let currSpot = spots[+spotId];
 
-    return (
+
+    let currSpot = spots[spotId];
+    console.log(currSpot)
+    return currSpot.spot && (
         <div className='haunt-details-page'>
-            <p>{currSpot.spot.name}</p>
-            {currSpot.images.map((image, i) => {
-                return (
-                    <img src={image.url} key={i} alt='' />
-                    )
-                }) }
+            <h1>{currSpot.spot.name}</h1>
+            {sessionUser.user.id === currSpot.spot.userId &&
+            <div className='edit-delete-spot-btn'>
+                <EditHauntModal spot={currSpot.spot} />
+                <DeleteHauntModal spot={currSpot.spot} />
+            </div>
+            }
+            <div className='pictures-div'>
+                {currSpot.spot.imageIndex.map((image, i) => {
+                    return (
+                        <img className='spot-pictures' src={currSpot.images[image].url} key={i} alt='' />
+                        )
+                    }) }
+            </div>
             <p>{currSpot.spot.address}</p>
             <p>{currSpot.spot.city}</p>
             <p>{currSpot.spot.state}</p>
