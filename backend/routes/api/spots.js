@@ -55,6 +55,14 @@ router.route('/images')
         const newImages = await db.Image.findAll({where: {spotId}});
         return res.json(newImages);
     }))
+    .delete(asyncHandler(async (req, res) => {
+        const { id } = req.body;
+        const image = db.Image.findByPk(id);
+        await image.destroy();
+        res.json({msg: 'Image Deleted'});
+    }))
+
+
 router.route('/:id')
     .get(asyncHandler(async (req, res) => {
         const spotId = req.params.id;

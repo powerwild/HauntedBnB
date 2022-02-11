@@ -4,6 +4,7 @@ const ADD_NEW = 'spots/ADD_NEW';
 const GET_ALL = 'spots/GET_ALL';
 const UPDATE_ONE = 'spots/UPDATE_ONE';
 const DELETE_ONE = 'spots/DELETE_ONE';
+const DELETE_IMAGE = 'spots/DELETE_IMAGE';
 
 
 const addHaunt = (spot) => {
@@ -94,6 +95,22 @@ export const deleteHauntThunk = (removeAtId) => async dispatch => {
     return deletedSpot;
 };
 
+const deleteImage = (imageId, spotId) => {
+    return {
+        type: DELETE_IMAGE,
+        data: {imageId, spotId}
+    }
+}
+
+export const deleteImageThunk = (imageId, spotId) => async dispatch => {
+    const deleteMessage = await csrfFetch('/api/spots/images', {method: 'DELETE', body: JSON.stringify(imageId)})
+    if (deleteMessage.ok) {
+        const message = await deleteMessage.json();
+        await dispatch(deleteImage(imageId, spotId));
+        return message;
+    }
+}
+
 
 
 const initialState = {};
@@ -116,6 +133,10 @@ const hauntReducer = (state = initialState, action) => {
             return newState;
         case DELETE_ONE:
             delete newState[action.id];
+            return newState;
+        case DELETE_IMAGE:
+            let index = newState[action.data.spotId].images.findIndex(el => el.id === action.data.imageId);
+            newState[action.data.spotId].images.splice(index, 1);
             return newState;
         default:
             return state

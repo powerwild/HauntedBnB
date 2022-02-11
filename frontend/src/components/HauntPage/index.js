@@ -1,13 +1,15 @@
 import { Redirect, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import EditHauntModal from './EditHauntModal';
 import DeleteHauntModal from './DeleteHauntModal';
+import { deleteImageThunk } from '../../store/haunts';
 import './HauntPage.css';
 
 
 const HauntPage = ({sessionUser}) => {
     const { spotId } = useParams();
     const haunt = useSelector(state => state.haunts[spotId]);
+    const dispatch = useDispatch();
 
 
     return haunt ? (
@@ -22,7 +24,10 @@ const HauntPage = ({sessionUser}) => {
             <div className='pictures-div'>
                 {haunt.images.map((image, i) => {
                     return (
-                        <img className='spot-pictures' src={image.url} key={i} alt='' />
+                        <div className='spot-pictures'>
+                            <img className='spot-pictures' src={image.url} key={i} alt='' />
+                            <button onClick={() => dispatch(deleteImageThunk(image.id, spotId))}>DELETE PIC</button>
+                        </div>
                         )
                     }) }
             </div>
