@@ -15,28 +15,28 @@ const addHaunt = (spot, images) => {
 }
 
 export const addHauntThunk = (spot, imagesArr) => async dispatch => {
-    let createdSpot;
-    let images;
-    await csrfFetch('/api/spots', {
+    csrfFetch('/api/spots', {
             method: 'POST',
             body: JSON.stringify(spot)
-        }).then((res) => {
-            createdSpot = res.json();
-            await csrfFetch('/api/images', {method: 'POST',
-            body: JSON.stringify({imagesArr, spotId: createdSpot.id})
-            }).then((res) => {
-                const imagesJSON = await csrfFetch('/api/images', {body: JSON.stringify({spotId: spot.id})})
-                if (imagesJSON.ok) {
-                    images = await imagesJSON.json();
-                    dispatch(addHaunt(spot, images))
-                }
+        }).then(async (res) => {
+            const newSpot = await res.json();
+            createdSpot = {...newSpot};
+            console.log(createdSpot)
+            const imagesJSON = csrfFetch('/api/images', {method: 'POST',
+                body: JSON.stringify({imagesArr, spotId: createdSpot.id})
+                })
+            if (imagesJSON.ok) {
+                const images = await imagesJSON.json();
+                dispatch(addHaunt(createdSpot, images));
+                console.log(images)
+                return images[0].spotId
+            }
         })
-    })
-        // console.log(spot)
-        // console.log(spot.spot)
-        // console.log(spot.newImages)
-        // await dispatch(addHaunt(spot, images));
-    return createdSpot;
+    // console.log(createdSpot)
+    // console.log(images)
+    // console.log(spot.newImages)
+    // await dispatch(addHaunt(spot, images));
+    // return createdSpot;
 
 }
 

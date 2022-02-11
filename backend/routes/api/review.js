@@ -35,12 +35,13 @@ router.route('/')
         return res.status(200);
     }));
 
-router.route('/:id')
+router.route('/:spotId')
     .get(asyncHandler(async (req, res) => {
-        const { id } = req.params;
+        const { spotId } = req.params;
         const reviews = await db.Review.findAll({
-            where: {spotId: +id}
+            where: {spotId: +spotId}
         })
+        console.log(reviews)
         return res.json(reviews);
     }))
 

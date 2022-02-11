@@ -1,17 +1,15 @@
-import NewHauntForm from "./NewHauntForm";
+import AddReviewForm from "./AddReviewForm";
 import { FormModal } from "../../context/Modal";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 
 
-
-const NewHauntModal = () => {
-    const [ renderModal, setRenderModal ] = useState(false);
+const AddReviewModal = () => {
 
 
     return (
         <>
-            <button className='new-haunt-btn' onClick={() => setRenderModal(true)}>Add New Haunt</button>
+            <button className='add-review-btn' onClick={() => setRenderModal(true)}>Add New Haunt</button>
             {renderModal ? (
                 <FormModal onClose={() => setRenderModal(false)}>
                     <NewHauntForm onClose={() => setRenderModal(false)} />
@@ -21,5 +19,3 @@ const NewHauntModal = () => {
         </>
     )
 }
-
-export default NewHauntModal;

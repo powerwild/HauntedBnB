@@ -8,20 +8,25 @@ const router = require('express').Router();
 
 
 router.route('/')
-.get(asyncHandler(async(req, res) => {
-    const { spotId } = req.body;
-    const images = await db.Image.findAll({where: {spotId}})
-    return res.json(images);
-}))
 .post(asyncHandler(async (req, res) => {
     const { imagesArr, spotId } = req.body;
 
-    imagesArr.forEach(async url => {
+    // imagesArr.forEach( url => {
+    //     await db.Image.create({
+    //         spotId,
+    //         url
+    //     })
+    // });
+    for (let i = 0; i < imagesArr.length; i++) {
         await db.Image.create({
             spotId,
-            url
+            url: imagesArr[i]
         })
-    });
+    }
+
+    const images = await db.Image.findAll({where: {spotId}})
+    console.log(images)
+
     return res.status(200);
 }))
 .delete(asyncHandler(async (req, res) => {
@@ -31,5 +36,12 @@ router.route('/')
     return res.json({msg: 'Image Deleted'});
 }));
 
+
+// router.route('/:id')
+//     .get(asyncHandler(async(req, res) => {
+//     const id = req.params.id;
+//     const images = await db.Image.findAll({where: {spotId: +id}})
+//     return res.json(images);
+// }))
 
 module.exports = router;

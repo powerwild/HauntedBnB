@@ -47,10 +47,10 @@ const ProfileButton = ({username, email}) => {
                     <ul className='dropdown'>
                         <li onClick={e => e.stopPropagation()}>{username}</li>
                         <li onClick={e => e.stopPropagation()}>{email}</li>
-                        <li onClick={e => e.stopPropagation()}>My Haunts</li>
+                        {/* <li onClick={e => e.stopPropagation()}>My Haunts</li>
                         <li onClick={e => e.stopPropagation()}>My Bookings</li>
                         <li onClick={e => e.stopPropagation()}>My Messages</li>
-                        <li onClick={e => e.stopPropagation()}>My Reviews</li>
+                        <li onClick={e => e.stopPropagation()}>My Reviews</li> */}
                         <li onClick={e => logout(e)}>Log Out</li>
                     </ul>
                 )}

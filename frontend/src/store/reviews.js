@@ -1,7 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const POST_REV = 'reviews/POST';
-const GET_REVS = 'reviews/HAUNT_REVS';
+const GET_REVS = 'reviews/GET_REVS';
 const PUT_REV = 'reviews/PUT';
 const DELETE_REV = 'reviews/DELETE';
 
@@ -16,6 +16,11 @@ const postRev = (rev) => {
 
 export const postRevThunk = (review) => async dispatch => {
     const newReviewJSON = await csrfFetch('/api/reviews', {method: 'POST', body: JSON.stringify(review)});
+    if (newReviewJSON.ok) {
+        const newReview = await newReviewJSON.json();
+        dispatch(postRev(newReview))
+    }
+    return newReviewJSON;
 }
 
 
@@ -23,13 +28,18 @@ export const postRevThunk = (review) => async dispatch => {
 
 const getRevs = (revs) => {
     return {
-        type: GET_HAUNTS,
+        type: GET_REVS,
         revs
     }
 }
 
-export const getRevsThunk = () => async dispatch => {
-    const something = await csrfFetch('', {})
+export const getRevsThunk = (spotId) => async dispatch => {
+    const revsJSON = await csrfFetch(`/api/reviews/${spotId}`);
+    if (revsJSON.ok) {
+        const reviews = await revsJSON.json();
+        dispatch(getRevs(reviews));
+    }
+    return revsJSON;
 }
 
 
@@ -42,8 +52,13 @@ const putRev = (rev) => {
     }
 }
 
-export const putRevThunk = () => async dispatch => {
-    const something = await csrfFetch('', {})
+export const putRevThunk = (newReview) => async dispatch => {
+    const updatedReviewJSON = await csrfFetch('/api/reviews', {method: 'PUT', body: JSON.stringify(newReview)})
+    if (updatedReviewJSON.ok) {
+        const updatedReview = updatedReviewJSON.json();
+        dispatch(putRev(updatedReview))
+    }
+    return updatedReviewJSON;
 }
 
 
@@ -56,8 +71,12 @@ const deleteRev = (id) => {
     }
 }
 
-export const deleteRevThunk = () => async dispatch => {
-    const something = await csrfFetch('', {})
+export const deleteRevThunk = (id) => async dispatch => {
+    const deleteRevJSON = await csrfFetch('/api/reviews', {method: 'POST', body: JSON.stringify(id)})
+    if (deleteRevJSON.ok) {
+        dispatch(deleteRev(id));
+    }
+    return deleteRevJSON;
 }
 
 
@@ -70,7 +89,7 @@ const reviewReducer = (state={}, action) => {
     switch(action.type) {
         case GET_REVS:
             action.revs.forEach(rev => {
-                newState[rev.id] = action.rev;
+                newState[rev.id] = rev;
             })
             return newState;
         case POST_REV:
