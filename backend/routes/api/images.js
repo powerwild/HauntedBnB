@@ -27,7 +27,7 @@ router.route('/')
     const images = await db.Image.findAll({where: {spotId}})
     console.log(images)
 
-    return res.status(200);
+    return res.json(images);
 }))
 .delete(asyncHandler(async (req, res) => {
     const { id } = req.body;

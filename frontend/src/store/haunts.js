@@ -15,23 +15,39 @@ const addHaunt = (spot, images) => {
 }
 
 export const addHauntThunk = (spot, imagesArr) => async dispatch => {
-    csrfFetch('/api/spots', {
+    // csrfFetch('/api/spots', {
+    //         method: 'POST',
+    //         body: JSON.stringify(spot)
+    //     }).then(async (res) => {
+    //         const newSpot = await res.json();
+    //         const imagesJSON = csrfFetch('/api/images', {method: 'POST',
+    //             body: JSON.stringify({imagesArr, spotId: newSpot.id})
+    //             })
+    //         if (imagesJSON.ok) {
+    //             const images = await imagesJSON.json();
+    //             dispatch(addHaunt(newSpot, images));
+    //             console.log(images)
+    //             return images[0].spotId
+    //         }
+    //     })
+
+    const newSpotJson = await csrfFetch('/api/spots', {
+        method: 'POST',
+        body: JSON.stringify(spot)
+    });
+    if (newSpotJson.ok) {
+        const newSpot = await newSpotJson.json();
+        const newImagesJSON = await csrfFetch('/api/images', {
             method: 'POST',
-            body: JSON.stringify(spot)
-        }).then(async (res) => {
-            const newSpot = await res.json();
-            createdSpot = {...newSpot};
-            console.log(createdSpot)
-            const imagesJSON = csrfFetch('/api/images', {method: 'POST',
-                body: JSON.stringify({imagesArr, spotId: createdSpot.id})
-                })
-            if (imagesJSON.ok) {
-                const images = await imagesJSON.json();
-                dispatch(addHaunt(createdSpot, images));
-                console.log(images)
-                return images[0].spotId
-            }
-        })
+            body: JSON.stringify({imagesArr, spotId: newSpot.id})
+        });
+        if (newImagesJSON.ok) {
+            const images = await newImagesJSON.json();
+            dispatch(addHaunt(newSpot, images));
+            console.log(newSpot)
+            return newSpot.id;
+        }
+    }
     // console.log(createdSpot)
     // console.log(images)
     // console.log(spot.newImages)

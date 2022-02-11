@@ -36,13 +36,16 @@ const NewHauntForm = ({onClose}) => {
     }
 
 
-    const handleSubmit =  async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);
-        const newSpot = await dispatch(addHauntThunk({name, description, address, city, state, country, price}, images))
-        console.log(newSpot)
-        if (newSpot?.id) return history.push(`/spots/${newSpot.id}`)
+        const newSpotId = await dispatch(addHauntThunk({name, description, address, city, state, country, price}, images));
+        console.log(newSpotId)
+        if (newSpotId) {
+            onClose();
+            return history.push(`/spots/${newSpotId}`)
+        }
         }
 
     useEffect(() => {
