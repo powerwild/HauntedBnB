@@ -43,24 +43,7 @@ router.route('/')
         // console.log(spot.Images)
         return res.json(spot);
     }));
-router.route('/images')
-    .post(asyncHandler(async (req, res) => {
-        const { images, spotId } = req.body;
-        images.forEach(async url => {
-            await db.Image.create({
-                spotId,
-                url
-            })
-        });
-        const newImages = await db.Image.findAll({where: {spotId}});
-        return res.json(newImages);
-    }))
-    .delete(asyncHandler(async (req, res) => {
-        const { id } = req.body;
-        const image = db.Image.findByPk(id);
-        await image.destroy();
-        res.json({msg: 'Image Deleted'});
-    }))
+
 
 
 router.route('/:id')
@@ -70,7 +53,7 @@ router.route('/:id')
             where: { id: +spotId },
             include: { model: db.Review }
         });
-        res.json({ spot });
+        return res.json({ spot });
     }))
     .put(asyncHandler(async (req, res) => {
         const spotId = req.params.id;
@@ -81,13 +64,13 @@ router.route('/:id')
         spot.price = price;
 
         await spot.save();
-        res.json(spot);
+        return res.json(spot);
     }))
     .delete(asyncHandler(async (req, res) => {
         const spotId = req.params.id;
         const spot = await db.Spot.findByPk(+spotId);
         await spot.destroy();
-        res.json({ msg: 'Deletion Successful' });
+        return res.json({ msg: 'Deletion Successful' });
     }));
 
 

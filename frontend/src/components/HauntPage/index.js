@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditHauntModal from './EditHauntModal';
 import DeleteHauntModal from './DeleteHauntModal';
 import { deleteImageThunk } from '../../store/haunts';
+import Reviews from '../ReviewsCompon';
 import './HauntPage.css';
 
 
@@ -26,7 +27,7 @@ const HauntPage = ({sessionUser}) => {
                     return (
                         <div className='spot-pictures'>
                             <img className='spot-pictures' src={image.url} key={i} alt='' />
-                            <button onClick={() => dispatch(deleteImageThunk(image.id, spotId))}>DELETE PIC</button>
+                            {haunt.spot.userId === sessionUser.user.id && <button onClick={() => dispatch(deleteImageThunk(image.id, spotId))}>DELETE PIC</button>}
                         </div>
                         )
                     }) }
@@ -34,6 +35,7 @@ const HauntPage = ({sessionUser}) => {
             <p>{haunt.spot.address}        {haunt.spot.city}, {haunt.spot.state}  {haunt.spot.country}</p>
             <p>${haunt.spot.price}/night</p>
             <p>{haunt.spot.description}</p>
+            <Reviews />
         </div>
     ) : (<Redirect to='/spots' />)
 }

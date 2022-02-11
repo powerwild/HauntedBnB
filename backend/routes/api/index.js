@@ -5,6 +5,7 @@ const bookingRouter = require('./booking');
 const reviewRouter = require('./review');
 const messageRouter = require('./message');
 const { requireAuth } = require('../../utils/auth');
+const imageRouter = require('./images');
 
 const router = require('express').Router();
 
@@ -19,6 +20,7 @@ router.use('/spots', spotRouter);
 router.use('/bookings', bookingRouter);
 router.use('/reviews', reviewRouter);
 router.use('/messages', messageRouter);
+router.use('/images', imageRouter);
 
 
 
