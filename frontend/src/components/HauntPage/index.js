@@ -4,7 +4,7 @@ import EditHauntModal from './EditHauntModal';
 import DeleteHauntModal from './DeleteHauntModal';
 import { deleteImageThunk } from '../../store/haunts';
 import { getRevsThunk } from '../../store/reviews';
-import Reviews from '../ReviewsCompon';
+import Reviews from './ReviewsCompon';
 import './HauntPage.css';
 import { useEffect, useState } from 'react';
 
