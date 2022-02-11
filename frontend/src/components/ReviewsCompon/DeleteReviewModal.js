@@ -1,18 +1,17 @@
-import AddReviewForm from "./AddReviewForm";
 import { FormModal } from "../../context/Modal";
 import { useState } from "react";
+import DeleteReviewForm from "./DeleteReviewForm";
 
 
-
-const AddReviewModal = ({ oldReview, id}) => {
+const DeleteReviewModal = ({reviewId}) => {
     const [ renderModal, setRenderModal ] = useState(false);
 
     return (
         <>
-            <button className='add-review-btn' onClick={() => setRenderModal(true)}>Add Review</button>
+            <button className='delete-haunt-btn' onClick={() => setRenderModal(true)}>Delete Review</button>
             {renderModal ? (
                 <FormModal onClose={() => setRenderModal(false)}>
-                    <AddReviewForm onClose={() => setRenderModal(false)} oldReview={oldReview} id={id}/>
+                    <DeleteReviewForm  onClose={() => setRenderModal(false)} reviewId={reviewId}/>
                 </FormModal>
                 ) : null
             }
@@ -20,4 +19,6 @@ const AddReviewModal = ({ oldReview, id}) => {
     )
 }
 
-export default AddReviewModal;
+
+
+export default DeleteReviewModal;

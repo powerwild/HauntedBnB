@@ -17,7 +17,7 @@ const EditHauntForm = ({spot, onClose}) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);
-        return await dispatch(updateHauntThunk({id: spot.id, name, description, price})).then(onClose())
+        return dispatch(updateHauntThunk({id: spot.id, name, description, price})).then(onClose())
             // .catch( async (response) => {
             //     const data = await response.json();
             //     if (data?.errors) setValidationErrors(data.errors);

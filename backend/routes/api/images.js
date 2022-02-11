@@ -25,7 +25,7 @@ router.route('/')
     }
 
     const images = await db.Image.findAll({where: {spotId}})
-    console.log(images)
+    
 
     return res.json(images);
 }))

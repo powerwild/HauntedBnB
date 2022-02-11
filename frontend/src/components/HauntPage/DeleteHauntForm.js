@@ -13,7 +13,7 @@ const DeleteHauntForm = ({spot}) => {
     return (
         <form onSubmit={handleSubmit} className='delete-spot-modal'>
             <label htmlFor='check-deletion-request'>Do you really wish to delete your haunt?</label>
-            <button>Yes</button>
+            <button>DELETE</button>
         </form>
     )
 }

@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
-import { postRevThunk } from '../../store/reviews';
+import {  putRevThunk } from '../../store/reviews';
 import { useDispatch } from 'react-redux';
-import { useSelector } from "react-redux";
 
 
-const AddReviewForm = ({onClose, id}) => {
-    const sessionUser = useSelector(state => state.session.user);
-    const [ review, setReview ] = useState('');
+
+const EditReviewForm = ({onClose, oldReview}) => {
+    const [ review, setReview ] = useState(oldReview.review);
     const [ validationErrors, setValidationErrors ] = useState([]);
     const dispatch = useDispatch()
-    
-    const handleSubmit = (e) => {
+
+
+    const handleSubmit =  (e) => {
         e.preventDefault();
         e.stopPropagation();
-        return dispatch(postRevThunk(review, sessionUser.id, id)).then(() => onClose());
+        return dispatch(putRevThunk({review, id: oldReview.id})).then(() => onClose());
+        // return dispatch(putRevThunk({review, id: oldReview.id}));
     }
 
     useEffect(() => {
@@ -29,10 +30,10 @@ const AddReviewForm = ({onClose, id}) => {
             <label htmlFor='add-review'>
                 <textarea name='add-review' value={review} onChange={e => setReview(e.target.value)}/>
             </label>
-            <button disabled={validationErrors.length > 0}>Add</button>
+            <button disabled={validationErrors.length > 0}>Edit</button>
         </form>
     )
 }
 
 
-export default AddReviewForm;
+export default EditReviewForm;

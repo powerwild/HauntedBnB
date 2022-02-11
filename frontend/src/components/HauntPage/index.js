@@ -4,19 +4,19 @@ import EditHauntModal from './EditHauntModal';
 import DeleteHauntModal from './DeleteHauntModal';
 import { deleteImageThunk } from '../../store/haunts';
 import { getRevsThunk } from '../../store/reviews';
-import Reviews from './ReviewsCompon';
+import Reviews from '../ReviewsCompon';
 import './HauntPage.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
 
 
 const HauntPage = ({sessionUser}) => {
     const { spotId } = useParams();
     const haunt = useSelector(state => state.haunts[spotId]);
-    const [ pageRendered, setPageRendered ] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getRevsThunk(spotId)).then(() => setPageRendered(true));
+        dispatch(getRevsThunk(spotId));
     }, [])
 
     return haunt ? (
@@ -41,7 +41,7 @@ const HauntPage = ({sessionUser}) => {
             <p>{haunt.spot.address}        {haunt.spot.city}, {haunt.spot.state}  {haunt.spot.country}</p>
             <p>${haunt.spot.price}/night</p>
             <p>{haunt.spot.description}</p>
-            {pageRendered && <Reviews id={haunt.spot.id} user={sessionUser}/>}
+            <Reviews id={haunt.spot.id} user={sessionUser}/>
         </div>
     ) : (<Redirect to='/spots' />)
 }

@@ -15,13 +15,14 @@ router.route('/')
     }))
     .put(asyncHandler(async (req, res) => {
         const newReview = req.body;
-        const oldReview = await db.Review.findbyPk(newReview.id);
+        const oldReview = await db.Review.findByPk(newReview.id);
         oldReview.review = newReview.review;
         await oldReview.save();
         return res.status(200)
     }))
     .post(asyncHandler(async (req, res) => {
-        const { userId, spotId, review } = req.body;
+        const {userId, spotId, review} = req.body;
+
         const newReview = await db.Review.create({
             userId,
             spotId,
@@ -41,7 +42,7 @@ router.route('/:spotId')
         const reviews = await db.Review.findAll({
             where: {spotId: +spotId}
         })
-        console.log(reviews)
+
         return res.json(reviews);
     }))
 

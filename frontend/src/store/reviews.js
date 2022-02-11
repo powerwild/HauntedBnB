@@ -14,8 +14,9 @@ const postRev = (rev) => {
     }
 }
 
-export const postRevThunk = (review) => async dispatch => {
-    const newReviewJSON = await csrfFetch('/api/reviews', {method: 'POST', body: JSON.stringify(review)});
+export const postRevThunk = (review, userId, spotId) => async dispatch => {
+
+    const newReviewJSON = await csrfFetch('/api/reviews', {method: 'POST', body: JSON.stringify({review, userId, spotId})});
     if (newReviewJSON.ok) {
         const newReview = await newReviewJSON.json();
         dispatch(postRev(newReview))
@@ -55,7 +56,7 @@ const putRev = (rev) => {
 export const putRevThunk = (newReview) => async dispatch => {
     const updatedReviewJSON = await csrfFetch('/api/reviews', {method: 'PUT', body: JSON.stringify(newReview)})
     if (updatedReviewJSON.ok) {
-        const updatedReview = updatedReviewJSON.json();
+        const updatedReview = await updatedReviewJSON.json();
         dispatch(putRev(updatedReview))
     }
     return updatedReviewJSON;
@@ -72,7 +73,7 @@ const deleteRev = (id) => {
 }
 
 export const deleteRevThunk = (id) => async dispatch => {
-    const deleteRevJSON = await csrfFetch('/api/reviews', {method: 'POST', body: JSON.stringify(id)})
+    const deleteRevJSON = await csrfFetch('/api/reviews', {method: 'DELETE', body: JSON.stringify({id})})
     if (deleteRevJSON.ok) {
         dispatch(deleteRev(id));
     }
