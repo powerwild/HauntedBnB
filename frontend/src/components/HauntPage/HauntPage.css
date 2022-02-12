@@ -3,8 +3,21 @@
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.haunt-name {
 
+}
+.haunt-dets-div {
+    
+}
 .haunt-details {
+
+}
+
+.haunt-details-page {
+
+}
+
+.delete-picture-btn {
 
 }
 
@@ -14,7 +27,11 @@
     padding: 3% 3%;
 }
 
-.spot-pictures {
+.haunt-pictures {
     width: 40%;
     padding: 3% 3%;
+}
+
+.haunt-picture {
+
 }
