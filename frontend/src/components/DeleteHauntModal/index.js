@@ -1,7 +1,7 @@
 import { FormModal } from "../../context/Modal";
 import { useState } from "react";
 import DeleteHauntForm from "./DeleteHauntForm";
-
+import './Deletehaunt.css';
 
 
 const DeleteHauntModal = ({spot}) => {

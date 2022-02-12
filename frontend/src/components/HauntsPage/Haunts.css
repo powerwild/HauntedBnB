@@ -2,7 +2,9 @@ p {
     margin: 10% 0 0 0;
 }
 
+.new-haunt-btn {
 
+}
 
 .spots-page {
     display: flex;
@@ -40,4 +42,8 @@ p {
 .spots-city {
     display: flex;
     flex-direction: column;
+}
+
+.spots-price {
+    
 }

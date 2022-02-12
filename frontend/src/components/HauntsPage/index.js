@@ -15,7 +15,7 @@ const HauntsPage = () => {
         <>
             <div className='spots-title-div'>
                 <h1>Browse Our Haunts</h1>
-                <NewHauntModal />
+                <NewHauntModal className='new-haunt-btn'/>
             </div>
             <div className='spots-page'>
                 {Object.values(haunts).map((spotNimages, i) => {
@@ -33,7 +33,7 @@ const HauntsPage = () => {
                                     <p>{spotNimages.spot.city}, {spotNimages.spot.state}</p>
                                     <p>{spotNimages.spot.country}</p>
                                 </div>
-                                <p>${spotNimages.spot.price}/night</p>
+                                <p className='spots-price'>${spotNimages.spot.price}/night</p>
                             </div>
                         </div>
                     )

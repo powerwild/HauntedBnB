@@ -1,7 +1,7 @@
 import AddReviewForm from "./AddReviewForm";
 import { FormModal } from "../../context/Modal";
 import { useState } from "react";
-
+import './AddReview.css'
 
 
 const AddReviewModal = ({ oldReview, id}) => {

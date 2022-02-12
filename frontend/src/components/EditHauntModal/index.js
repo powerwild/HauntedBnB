@@ -1,7 +1,7 @@
 import EditHauntForm from "./EditHauntForm.js";
 import { FormModal } from "../../context/Modal";
 import { useState } from "react";
-
+import './EditHaunt.css';
 
 
 const EditHauntModal = ({spot}) => {

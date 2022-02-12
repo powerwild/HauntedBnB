@@ -1,7 +1,7 @@
 import EditReviewForm from "./EditReviewForm";
 import { FormModal } from "../../context/Modal";
 import { useState } from "react";
-
+import './EditReview.css';
 
 
 const EditReviewModal = ({verb, oldReview, spotId, userId}) => {

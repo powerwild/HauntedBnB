@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { updateHauntThunk } from "../../store/haunts";
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
-import './HauntPage.css';
+
 
 
 const EditHauntForm = ({spot, onClose}) => {
@@ -13,7 +12,7 @@ const EditHauntForm = ({spot, onClose}) => {
 
     const dispatch = useDispatch();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
         setValidationErrors([]);

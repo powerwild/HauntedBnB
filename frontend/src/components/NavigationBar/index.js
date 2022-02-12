@@ -3,8 +3,8 @@ import { csrfFetch } from "../../store/csrf";
 import { getSession } from "../../store/session";
 import ProfileButton from "./ProfileButton";
 import { NavLink } from 'react-router-dom';
-import LoginFormModal from "../LoginFormPage";
-import SignupFormModal from '../SignupFormPage';
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from '../SignupFormModal';
 
 
 import './Navigation.css';

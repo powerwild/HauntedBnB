@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import AddReviewModal from '../AddReviewModal';
-import DeleteReviewModal from './DeleteReviewModal';
+import DeleteReviewModal from '../DeleteReviewModal';
 import EditReviewModal from '../EditReviewModal';
 import './Reviews.css';
 import { useEffect, useState } from 'react';

@@ -18,7 +18,7 @@ router.route('/')
         const oldReview = await db.Review.findByPk(newReview.id);
         oldReview.review = newReview.review;
         await oldReview.save();
-        return res.status(200)
+        return res.json(oldReview);
     }))
     .post(asyncHandler(async (req, res) => {
         const {userId, spotId, review} = req.body;
@@ -33,7 +33,7 @@ router.route('/')
     .delete(asyncHandler(async (req, res) => {
         const badReview = await db.Review.findByPk(req.body.id);
         await badReview.destroy();
-        return res.status(200);
+        return res.json({msg: 'Success'});
     }));
 
 router.route('/:spotId')
