@@ -61,7 +61,7 @@ const LoginForm = () => {
                         required
                     />
                 </label>
-                <button disabled={validationErrors.length > 0}>Log In</button>
+                <button className='login-form-btn' disabled={validationErrors.length > 0}>Log In</button>
             </form>
 
     )

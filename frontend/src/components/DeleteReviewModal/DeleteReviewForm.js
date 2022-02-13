@@ -12,9 +12,9 @@ const DeleteReviewForm = ({reviewId, onClose}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Do you really want to delete your review?</label>
-            <button>DELETE</button>
+        <form className="delete-review-form" onSubmit={handleSubmit}>
+            <label className="delete-review-message">Do you really want to delete your review?</label>
+            <button className="delete-review-form-btn">DELETE</button>
         </form>
     )
 }

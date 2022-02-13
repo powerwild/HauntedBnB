@@ -40,8 +40,8 @@ const HauntPage = ({sessionUser}) => {
             </div>
             <div className='haunt-dets-div'>
             <p className='haunt-details'>{haunt.spot.address}        {haunt.spot.city}, {haunt.spot.state}  {haunt.spot.country}</p>
-            <p>${haunt.spot.price}/night</p>
-            <p>{haunt.spot.description}</p>
+            <p className='haunt-price'>${haunt.spot.price}/night</p>
+            <p className='haunt-description'>{haunt.spot.description}</p>
             </div>
             <Reviews id={haunt.spot.id} user={sessionUser}/>
         </div>

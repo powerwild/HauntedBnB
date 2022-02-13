@@ -12,7 +12,7 @@ const HauntsPage = () => {
 
 
     return  (
-        <>
+        <div className='spots-list'>
             <div className='spots-title-div'>
                 <h1>Browse Our Haunts</h1>
                 <NewHauntModal className='new-haunt-btn'/>
@@ -31,7 +31,7 @@ const HauntsPage = () => {
                             <div className='spots-details'>
                                 <div className='spots-city-div'>
                                     <p className='spots-city'>{spotNimages.spot.city}, {spotNimages.spot.state}</p>
-                                    <p>{spotNimages.spot.country}</p>
+                                    <p className='spots-country'>{spotNimages.spot.country}</p>
                                 </div>
                                 <p className='spots-price'>${spotNimages.spot.price}/night</p>
                             </div>
@@ -39,7 +39,7 @@ const HauntsPage = () => {
                     )
                 })}
             </div>
-        </>
+        </div >
     )
 }
 

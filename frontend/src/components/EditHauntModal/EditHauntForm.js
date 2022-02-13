@@ -44,7 +44,7 @@ const EditHauntForm = ({spot, onClose}) => {
                         <li key={i}>{err}</li>
                     ))}
             </ul>
-            <label htmlFor='name' className='edit-form-label'>
+            <label htmlFor='name' className='edit-haunt-name'>
                 Name
                 <input name='name'
                     type='text'
@@ -54,7 +54,7 @@ const EditHauntForm = ({spot, onClose}) => {
                     required
                 />
             </label>
-           <label>
+           <label htmlFor="price" className="edit-haunt-price">
                 Price per night
                 <input name='price'
                     type='number'
@@ -64,7 +64,7 @@ const EditHauntForm = ({spot, onClose}) => {
                     required
                 />
             </label>
-            <label htmlFor='description' className='edit-form-label'>
+            <label htmlFor='description' className='edit-haunt-description'>
                 Description
                 <input name='description'
                     type='textarea'
@@ -74,7 +74,7 @@ const EditHauntForm = ({spot, onClose}) => {
                     required
                 />
             </label>
-            <button disabled={validationErrors.length > 0}>Update Haunt</button>
+            <button className="edit-haunt-form-btn" disabled={validationErrors.length > 0}>Update Haunt</button>
         </form>
     )
 }

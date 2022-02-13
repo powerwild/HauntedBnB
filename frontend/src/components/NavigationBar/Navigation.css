@@ -39,10 +39,13 @@
 }
 
 .user-btns-div {
-    width: 15%;
+    width: 20%;
     display: flex;
     justify-content: flex-end;
 }
+.user-btns-div > button {
+    background-color: orange;
+  }
 .user-btns {
     width: 30%;
 }
@@ -67,4 +70,5 @@
 .dropdown > * {
     border: 2px solid lightgray;
     background-color: darkslategrey;
+    color: orange;
 }

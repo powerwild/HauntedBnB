@@ -1,0 +1,33 @@
+.add-review-btn {
+    width: 10%;
+    background-color: orange;
+}
+
+.review-form-field {
+    min-width: 50%;
+    min-height: 30%;
+}
+.review-field {
+    width: 50%;
+}
+
+.add-review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.add-review-form > label {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.add-review-form-btn {
+    width: 30%;
+    background-color: orange;
+    color: black;
+}

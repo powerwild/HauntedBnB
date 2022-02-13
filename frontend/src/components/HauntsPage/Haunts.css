@@ -1,11 +1,12 @@
-p {
-    margin: 10% 0 0 0;
-}
+
 
 .new-haunt-btn {
-
+    width: 15%;
+    background-color: orange;
 }
-
+.spots-city, .spots-country, .spots-price {
+    padding-top: 10%;
+}
 
 
 .spots-page {
@@ -37,8 +38,9 @@ div > p {
     font-size: larger;
 }
 
-#root {
+.spots-list {
     background-color: rgb(93, 138, 90);
+    height: fit-content;
 }
 
 .spots-titles {

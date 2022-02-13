@@ -1,0 +1,34 @@
+.edit-review-btn {
+    background-color: blue;
+    color: white;
+}
+
+.edit-review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.edit-review-form > label {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.edit-form-field {
+    min-width: 50%;
+    min-height: 30%;
+}
+
+.edit-field {
+    width: 50%;
+}
+
+.edit-review-form-btn {
+    width: 30%;
+    background-color: blue;
+    color: white;
+}

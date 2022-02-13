@@ -26,11 +26,12 @@ const EditReviewForm = ({onClose, oldReview}) => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor='add-review'>
-                <textarea name='add-review' value={review} onChange={e => setReview(e.target.value)}/>
+        <form className="edit-review-form" onSubmit={handleSubmit}>
+            <label className="edit-form-field" htmlFor='edit-review'>
+                Review
+                <textarea className="edit-field" name='edit-review' value={review} onChange={e => setReview(e.target.value)}/>
             </label>
-            <button disabled={validationErrors.length > 0}>Edit</button>
+            <button className="edit-review-form-btn" disabled={validationErrors.length > 0}>Edit</button>
         </form>
     )
 }

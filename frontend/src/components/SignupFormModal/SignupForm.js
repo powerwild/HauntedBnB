@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signupThunk } from '../../store/session';
-import { Redirect } from 'react-router-dom';
 import './SignupForm.css';
 
 
@@ -58,7 +57,7 @@ const SignupForm = () => {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
-                    </label>
+                </label>
                 <label htmlFor='username' className='user-form-label'>
                     Username
                     <input name='username'
@@ -67,7 +66,7 @@ const SignupForm = () => {
                         value={username}
                         onChange={e => setUsername(e.target.value)}
                     />
-                    </label>
+                </label>
                 <label htmlFor='password' className='user-form-label'>
                     Password
                     <input name='password'
@@ -76,7 +75,7 @@ const SignupForm = () => {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
-                    </label>
+                </label>
                 <label htmlFor='confirmPassword' className='user-form-label'>
                     Confirm Password
                     <input name='confirmPassword'
@@ -85,8 +84,8 @@ const SignupForm = () => {
                         value={confirmPassword}
                         onChange={e => setConfirmPassword(e.target.value)}
                     />
-                    </label>
-                <button disabled={validationErrors.length > 0}>Sign Up</button>
+                </label>
+                <button id='signup-form-btn' disabled={validationErrors.length > 0}>Sign Up</button>
             </form>
 
     )

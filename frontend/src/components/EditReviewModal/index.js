@@ -9,7 +9,7 @@ const EditReviewModal = ({verb, oldReview, spotId, userId}) => {
 
     return (
         <>
-            <button className='add-review-btn' onClick={() => setRenderModal(true)}>Edit Review</button>
+            <button className='edit-review-btn' onClick={() => setRenderModal(true)}>Edit Review</button>
             {renderModal ? (
                 <FormModal onClose={() => setRenderModal(false)}>
                     <EditReviewForm onClose={() => setRenderModal(false)} verb={verb} oldReview={oldReview}/>

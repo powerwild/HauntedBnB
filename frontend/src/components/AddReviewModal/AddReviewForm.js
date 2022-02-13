@@ -9,7 +9,7 @@ const AddReviewForm = ({onClose, id}) => {
     const [ review, setReview ] = useState('');
     const [ validationErrors, setValidationErrors ] = useState([]);
     const dispatch = useDispatch()
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -25,11 +25,12 @@ const AddReviewForm = ({onClose, id}) => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor='add-review'>
-                <textarea name='add-review' value={review} onChange={e => setReview(e.target.value)}/>
+        <form className="add-review-form" onSubmit={handleSubmit}>
+            <label className="review-form-field" htmlFor='add-review'>
+                Review
+                <textarea className="review-field" name='add-review' value={review} onChange={e => setReview(e.target.value)}/>
             </label>
-            <button disabled={validationErrors.length > 0}>Add</button>
+            <button className='add-review-form-btn' disabled={validationErrors.length > 0}>Add</button>
         </form>
     )
 }

@@ -1,0 +1,32 @@
+.edit-haunt-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+}
+.edit-haunt-form > label {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+.edit-haunt-form-btn {
+    width: 30%;
+    background-color: blue;
+    color: white;
+}
+
+.edit-haunt-name {
+
+}
+
+.edit-haunt-price {
+
+}
+
+.edit-haunt-description {
+
+}
+
+

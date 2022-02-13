@@ -4,21 +4,44 @@
     justify-content: space-around;
 }
 .haunt-name {
-
+    margin: 0;
 }
+.edit-haunt-btn {
+    width: 15%;
+    background-color: blue;
+    color: white;
+}
+.delete-haunt-btn {
+    width: 15%;
+    background-color: red;
+    color: white;
+}
+
 .haunt-dets-div {
-    
+    border: 2px solid black;
+    width: 60%;
+    text-align: center;
+    margin-left: 20%;
+    border-radius: 10px;
 }
 .haunt-details {
 
 }
+.haunt-price {
 
-.haunt-details-page {
+}
+.haunt-description {
 
 }
 
-.delete-picture-btn {
 
+.haunt-details-page {
+    background-color: rgb(93, 138, 90);
+}
+
+.delete-picture-btn {
+    background-color: red;
+    color: white;
 }
 
 .edit-delete-spot-btn {
@@ -30,8 +53,17 @@
 .haunt-pictures {
     width: 40%;
     padding: 3% 3%;
+    height: fit-content;
 }
 
 .haunt-picture {
-
+    width: 100%;
+    height: 50vh;
 }
+
+.reviews-div {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

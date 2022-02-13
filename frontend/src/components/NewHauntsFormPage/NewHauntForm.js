@@ -41,7 +41,7 @@ const NewHauntForm = ({onClose}) => {
         e.stopPropagation();
         setValidationErrors([]);
         const newSpotId = await dispatch(addHauntThunk({name, description, address, city, state, country, price}, images));
-        
+
         if (newSpotId) {
             onClose();
             return history.push(`/spots/${newSpotId}`)
@@ -146,15 +146,15 @@ const NewHauntForm = ({onClose}) => {
             </label>
             <label htmlFor='description' className='haunt-form-label'>
                 Description
-                <input name='description'
-                    type='textarea'
+                <textarea name='description'
+                    type='text'
                     placeholder='description'
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                     required
                 />
             </label>
-            <button disabled={validationErrors.length > 0}>Add Haunt</button>
+            <button id='add-haunt-form-btn' disabled={validationErrors.length > 0}>Add Haunt</button>
         </form>
     )
 }

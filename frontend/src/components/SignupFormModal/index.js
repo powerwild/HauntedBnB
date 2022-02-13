@@ -2,6 +2,7 @@ import SignupForm from "./SignupForm";
 import { FormModal } from '../../context/Modal';
 import { useState } from "react";
 
+
 const SignupFormModal = () => {
     const [ renderModal, setRenderModal ] = useState(false);
 
