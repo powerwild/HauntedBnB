@@ -1,7 +1,7 @@
 import { Redirect, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import EditHauntModal from './EditHauntModal';
-import DeleteHauntModal from './DeleteHauntModal';
+import EditHauntModal from '../EditHauntModal';
+import DeleteHauntModal from '../DeleteHauntModal';
 import { deleteImageThunk } from '../../store/haunts';
 import { getRevsThunk } from '../../store/reviews';
 import Reviews from '../ReviewsCompon';

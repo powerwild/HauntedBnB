@@ -21,6 +21,9 @@
 .nav-icon {
     font-size: x-large;
 }
+.fas {
+    color: orange;
+}
 .home-nav {
     text-decoration: none;
     margin-left: 5%;

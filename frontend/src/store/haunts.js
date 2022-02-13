@@ -119,10 +119,10 @@ const deleteImage = (imageId, spotId) => {
 }
 
 export const deleteImageThunk = (imageId, spotId) => async dispatch => {
-    const deleteMessage = await csrfFetch('/api/spots/images', {method: 'DELETE', body: JSON.stringify(imageId)})
+    const deleteMessage = await csrfFetch('/api/images', {method: 'DELETE', body: JSON.stringify({imageId})})
     if (deleteMessage.ok) {
         const message = await deleteMessage.json();
-        await dispatch(deleteImage(imageId, spotId));
+        dispatch(deleteImage(imageId, spotId));
         return message;
     }
 }

@@ -23,14 +23,14 @@ const HauntsPage = () => {
                     return (
                         <div className='spot-divs' key={i}>
                             <Link to={`/spots/${spotNimages.spot.id}`}>
-                                <h3 className='spots-titles'>{spotNimages.spot.name}</h3>
+                                <h2 className='spots-titles'>{spotNimages.spot.name}</h2>
                             </Link>
                             <Link to={`/spots/${spotNimages.spot.id}`}>
                                 <img className='spots-image' src={spotNimages.images[0].url} alt=''/>
                             </Link>
                             <div className='spots-details'>
-                                <div className='spots-city'>
-                                    <p>{spotNimages.spot.city}, {spotNimages.spot.state}</p>
+                                <div className='spots-city-div'>
+                                    <p className='spots-city'>{spotNimages.spot.city}, {spotNimages.spot.state}</p>
                                     <p>{spotNimages.spot.country}</p>
                                 </div>
                                 <p className='spots-price'>${spotNimages.spot.price}/night</p>

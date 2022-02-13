@@ -6,9 +6,13 @@ p {
 
 }
 
+
+
 .spots-page {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+
 }
 
 .spots-title-div {
@@ -17,11 +21,24 @@ p {
     align-items: center;
 }
 .spot-divs {
-    width: 50%;
+    width: 45%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 3%;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 20px;
+    padding-bottom: 2%;
+}
+
+div > p {
+    font-weight: bold;
+    font-size: larger;
+}
+
+#root {
+    background-color: rgb(93, 138, 90);
 }
 
 .spots-titles {
@@ -39,11 +56,15 @@ p {
     width: 60%;
 }
 
-.spots-city {
+.spots-city-div {
     display: flex;
     flex-direction: column;
 }
 
+.spots-city {
+    text-decoration: underline;
+}
+
 .spots-price {
-    
+    color: midnightblue;
 }
