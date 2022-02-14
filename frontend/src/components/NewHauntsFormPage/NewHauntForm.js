@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { addHauntThunk } from "../../store/haunts";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import isUrl from 'validator/lib/isUrl';
 import './NewHaunt.css';
 
 
