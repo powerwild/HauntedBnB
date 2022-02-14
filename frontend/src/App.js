@@ -7,6 +7,9 @@ import SplashPage from "./components/SplashPage";
 import HauntsPage from "./components/HauntsPage";
 import HauntPage from "./components/HauntPage";
 import { getAllHauntsThunk } from './store/haunts';
+import MyHauntsPage from "./components/HauntsPage/MyHauntsPage";
+import NotFound from "./components/NotFound";
+import SearchResultsPage from "./components/HauntsPage/SearchResults.Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +42,15 @@ function App() {
             </Route>
             <Route exact path='/spots/:spotId'>
               <HauntPage pageRendered={pageRendered} sessionUser={sessionUser}/>
+            </Route>
+            <Route exact path='/myspots'>
+              <MyHauntsPage sessionUser={sessionUser}/>
+            </Route>
+            <Route path='/search'>
+              <SearchResultsPage />
+            </Route>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </>

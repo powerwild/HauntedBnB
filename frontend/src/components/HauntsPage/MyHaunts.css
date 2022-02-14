@@ -1,0 +1,70 @@
+.new-haunt-btn {
+    width: 15%;
+    background-color: orange;
+}
+.haunts-city, .haunts-country, .haunts-price {
+    padding-top: 10%;
+}
+
+
+.haunts-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.haunts-title-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.haunt-divs {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 20px;
+    padding-bottom: 2%;
+}
+
+div > p {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.haunts-list {
+    background-color: rgb(93, 138, 90);
+    height: fit-content;
+}
+
+.haunts-titles {
+    font-size: larger;
+}
+
+.haunts-image {
+    width: 40vw;
+    height: 65vh;
+}
+
+.haunts-details {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.haunts-city-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.haunts-city {
+    text-decoration: underline;
+}
+
+.haunts-price {
+    color: midnightblue;
+}

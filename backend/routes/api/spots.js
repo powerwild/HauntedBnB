@@ -4,6 +4,41 @@ const db = require('../../db/models');
 
 const router = require('express').Router();
 
+const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
+
+const validateHauntDetails = [
+    check('name')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a name.'),
+    check('description')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a description.'),
+    check('address')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a address.'),
+    check('city')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a city.'),
+    check('state')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a state.'),
+    check('country')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a country.'),
+    check('price')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a price.'),
+    handleValidationErrors
+]
+
 router.route('/')
     .get(asyncHandler(async (req, res) => {
         const spots = await db.Spot.findAll({
@@ -13,7 +48,7 @@ router.route('/')
         });
         return res.json(spots);
     }))
-    .post(asyncHandler(async (req, res) => {
+    .post(validateHauntDetails ,asyncHandler(async (req, res) => {
         const { name, description, address, city, state, country, price } = req.body;
 
         const spot = await db.Spot.create({

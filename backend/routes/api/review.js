@@ -3,6 +3,18 @@ const db = require('../../../backend/db/models');
 
 const router = require('express').Router();
 
+const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
+const validateReview = [
+    check('spotId')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Sorry there was an error. Please try again.'),
+    check('review')
+        .exists({checkFalsy: true})
+        .withMessage('Please provide a review.'),
+    handleValidationErrors
+]
 
 
 router.route('/')

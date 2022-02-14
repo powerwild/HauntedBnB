@@ -1,0 +1,36 @@
+.tomestone {
+    width: 80%;
+    height: 100%;
+    z-index: -1;
+    right: 10%;
+    position: absolute;
+}
+.not-found {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+    align-items: center;
+}
+.not-found-page {
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 1);
+}
+.R, .I, .P {
+    font-size: xx-large;
+    display: flex;
+    flex-direction: column;
+    text-orientation: upright;
+    height: 50px;
+    width: 20%;
+  }
+
+  .not-found-message {
+    position: absolute;
+    top: 15%;
+    font-size: large;
+    right: 15%;
+    word-wrap: unset;
+  }

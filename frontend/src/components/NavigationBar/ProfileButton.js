@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 const ProfileButton = ({username, email}) => {
     const [ dropdown, setDropdown ] = useState(false);
     const [ loggingOut, setLoggingOut ] = useState(false);
+    const [ myHaunts, setMyHaunts ] = useState(false);
     const dispatch = useDispatch();
 
     const openMenu = (e) => {
@@ -38,6 +39,13 @@ const ProfileButton = ({username, email}) => {
         )
     }
 
+    if (myHaunts) {
+        return (
+            <Redirect to='/myspots' />
+        )
+    }
+
+
 
     return(
         <>
@@ -47,10 +55,10 @@ const ProfileButton = ({username, email}) => {
                     <ul className='dropdown'>
                         <li onClick={e => e.stopPropagation()}>{username}</li>
                         <li onClick={e => e.stopPropagation()}>{email}</li>
-                        {/* <li onClick={e => e.stopPropagation()}>My Haunts</li>
-                        <li onClick={e => e.stopPropagation()}>My Bookings</li>
-                        <li onClick={e => e.stopPropagation()}>My Messages</li>
-                        <li onClick={e => e.stopPropagation()}>My Reviews</li> */}
+                        {/* <li onClick={e => setMyHaunts(true)}>My Haunts</li> */}
+                        {/* <li onClick={e => e.stopPropagation()}>My Bookings</li> */}
+                        {/* <li onClick={e => e.stopPropagation()}>My Messages</li> */}
+                        {/* <li onClick={e => e.stopPropagation()}>My Reviews</li> */}
                         <li onClick={e => logout(e)}>Log Out</li>
                     </ul>
                 )}

@@ -4,6 +4,7 @@ const spotRouter = require('./spots');
 const reviewRouter = require('./review');
 const { requireAuth } = require('../../utils/auth');
 const imageRouter = require('./images');
+const searchRouter = require('./search');
 
 const router = require('express').Router();
 
@@ -20,6 +21,7 @@ router.use('/reviews', reviewRouter);
 
 router.use('/images', imageRouter);
 
+router.use('/search', searchRouter);
 
 
 module.exports = router;

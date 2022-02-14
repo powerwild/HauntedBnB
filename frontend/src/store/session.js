@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET = 'session/GET';
 const REMOVE = 'session/REMOVE';
+const SEARCH = 'session/SEARCH';
 
 export const getSession = (user) => {
     return {
@@ -63,8 +64,24 @@ export const logoutThunk = () => async (dispatch) => {
     }
 }
 
+const saveSearch = (results) => {
+    return {
+        type: SEARCH,
+        results
+    }
+}
 
-const initialState = {user: null};
+export const performSearchThunk = (query) => async dispatch => {
+    const resultsJson = csrfFetch(`/api/search/${query}`);
+    if (resultsJson.ok) {
+        const results = resultsJson.json();
+        dispatch(saveSearch(results));
+    }
+    return resultsJson;
+}
+
+
+const initialState = {user: null, search: null};
 
 const sessionReducer = ( state = initialState, action ) => {
     let newState = {...state};
@@ -74,6 +91,9 @@ const sessionReducer = ( state = initialState, action ) => {
             return newState;
         case REMOVE:
             newState.user = null;
+            return newState;
+        case SEARCH:
+            newState.search = action.results;
             return newState;
         default:
             return state;

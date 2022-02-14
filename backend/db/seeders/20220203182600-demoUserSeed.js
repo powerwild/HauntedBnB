@@ -5,30 +5,41 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
    return queryInterface.bulkInsert('Users', [
-     {
-       email: 'mansion@user.com',
-       username: 'mansionUser',
-       hashedPassword: bcrypt.hashSync('password')},
-       {
-         email: 'house@user.com',
-         username: 'houseUser',
-         hashedPassword: bcrypt.hashSync('password')
-        },
-        {
-          email: 'cabin@user.com',
-          username: 'cabinUser',
-          hashedPassword: bcrypt.hashSync('password')
-        },
-        {
-          email: 'hotel@user.com',
-          username: 'hotelUser',
-          hashedPassword: bcrypt.hashSync('password')
-        },
-        {
-          email: 'demo@user.com',
-          username: 'DemoUser',
-          hashedPassword: bcrypt.hashSync('password')
-        }
+      {
+        email: 'mrs@winchester.com',
+        username: 'MrsWinchester',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'mrsmr@warren.com',
+        username: 'TheWarrens',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'stanley@hotel.com',
+        username: 'SKing',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'amityville@house.com',
+        username: 'TheLutzs',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'bhanharh@fort.com',
+        username: 'YES Please come to my home',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'ancientram@inn.com',
+        username: 'AncientRam',
+        hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        email: 'demo@user.com',
+        username: 'DemoUser',
+        hashedPassword: bcrypt.hashSync('password')
+      }
    ], {});
   },
 

@@ -1,14 +1,22 @@
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
-
 const router = require('express').Router();
+const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
 
+const validateImageArr = [
+    check('images')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .withMessage('Please provide a url address for your picture.'),
+    handleValidationErrors
+]
 
 
 
 
 router.route('/')
-.post(asyncHandler(async (req, res) => {
+.post(validateImageArr, asyncHandler(async (req, res) => {
     const { imagesArr, spotId } = req.body;
 
     // imagesArr.forEach( url => {
@@ -25,7 +33,7 @@ router.route('/')
     }
 
     const images = await db.Image.findAll({where: {spotId}})
-
+    if (images.length < 1) return res.json()
 
     return res.json(images);
 }))
