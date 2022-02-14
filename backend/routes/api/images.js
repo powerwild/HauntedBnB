@@ -40,7 +40,6 @@ router.route('/')
 }))
 .delete(asyncHandler(async (req, res) => {
     const data = req.body;
-    console.log(data)
     const image = await db.Image.findByPk(data.imageId);
     image.destroy();
     return res.json({msg: 'Image Deleted'});
