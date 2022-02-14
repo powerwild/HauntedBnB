@@ -7,7 +7,6 @@ const { check } = require('express-validator');
 const validateImageArr = [
     check('images')
         .exists({checkFalsy: true})
-        .notEmpty()
         .withMessage('Please provide a url address for your picture.'),
     handleValidationErrors
 ]
