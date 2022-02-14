@@ -4,8 +4,9 @@ const router = require('express').Router();
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator');
 
+
 const validateImageArr = [
-    check('images')
+    check('imagesArr')
         .exists({checkFalsy: true})
         .withMessage('Please provide a url address for your picture.'),
     handleValidationErrors
@@ -25,10 +26,11 @@ router.route('/')
     //     })
     // });
     for (let i = 0; i < imagesArr.length; i++) {
-        await db.Image.create({
+        if (imagesArr){
+            await db.Image.create({
             spotId,
             url: imagesArr[i]
-        })
+        })}
     }
 
     const images = await db.Image.findAll({where: {spotId}})
