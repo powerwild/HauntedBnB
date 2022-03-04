@@ -15,6 +15,7 @@ const addHaunt = (spot, images) => {
 }
 
 export const addHauntThunk = (spot, imagesArr) => async dispatch => {
+    // was causing a race condition
     // csrfFetch('/api/spots', {
     //         method: 'POST',
     //         body: JSON.stringify(spot)
@@ -119,7 +120,7 @@ const deleteImage = (imageId, spotId) => {
 }
 
 export const deleteImageThunk = (imageId, spotId) => async dispatch => {
-    const deleteMessage = await csrfFetch('/api/images', {method: 'DELETE', body: JSON.stringify({imageId})})
+    const deleteMessage = await csrfFetch('/api/images', {method: 'DELETE', body: JSON.stringify({imageId, spotId})})
     if (deleteMessage.ok) {
         const message = await deleteMessage.json();
         dispatch(deleteImage(imageId, spotId));

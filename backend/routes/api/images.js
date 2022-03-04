@@ -18,7 +18,7 @@ const validateImageArr = [
 router.route('/')
 .post(validateImageArr, asyncHandler(async (req, res) => {
     const { imagesArr, spotId } = req.body;
-
+    // creates a race condition where the following query is inconsistent
     // imagesArr.forEach( url => {
     //     await db.Image.create({
     //         spotId,
@@ -39,18 +39,17 @@ router.route('/')
     return res.json(images);
 }))
 .delete(asyncHandler(async (req, res) => {
-    const data = req.body;
-    const image = await db.Image.findByPk(data.imageId);
+    const {imageId, spotId} = req.body;
+    const totalImages = await db.Image.findAll({where: {spotId}})
+    if (totalImages.length < 2) {
+        alert('Must have at least one photo. Please upload a new one.')
+       return res.json()
+    }
+    const image = await db.Image.findByPk(imageId);
     image.destroy();
     return res.json({msg: 'Image Deleted'});
 }));
 
 
-// router.route('/:id')
-//     .get(asyncHandler(async(req, res) => {
-//     const id = req.params.id;
-//     const images = await db.Image.findAll({where: {spotId: +id}})
-//     return res.json(images);
-// }))
 
 module.exports = router;
