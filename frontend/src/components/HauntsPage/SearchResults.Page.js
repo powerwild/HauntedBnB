@@ -9,7 +9,7 @@ const SearchResultsPage = ({sessionUser}) => {
     return  (
         <div className='spots-list'>
             <div className='spots-title-div'>
-                <h1>Your Haunts</h1>
+                <h1>Results...</h1>
             </div>
             <div className='spots-page'>
                 {haunts.map((spotNimages, i) => {
