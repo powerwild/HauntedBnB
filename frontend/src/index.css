@@ -26,6 +26,10 @@ h1 {
     text-align: center;
 }
 
+h1, h2, p:hover {
+    cursor: default;
+}
+
 .user-form-div {
     position: absolute;
     width: 100%;
