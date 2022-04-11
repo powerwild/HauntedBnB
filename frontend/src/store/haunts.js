@@ -45,7 +45,6 @@ export const addHauntThunk = (spot, imagesArr) => async dispatch => {
         if (newImagesJSON.ok) {
             const images = await newImagesJSON.json();
             dispatch(addHaunt(newSpot, images));
-            console.log(newSpot)
             return newSpot.id;
         }
     }

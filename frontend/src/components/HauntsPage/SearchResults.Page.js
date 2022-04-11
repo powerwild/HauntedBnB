@@ -4,7 +4,7 @@ import './Haunts.css';
 
 
 const SearchResultsPage = ({sessionUser}) => {
-    const haunts = useSelector(state => state.sessionUser.search);
+    const haunts = useSelector(state => state.session.search);
 
     return  (
         <div className='spots-list'>
@@ -31,7 +31,7 @@ const SearchResultsPage = ({sessionUser}) => {
                                 </div>
                             </div>
                         )
-                    
+
                 })}
             </div>
         </div >
