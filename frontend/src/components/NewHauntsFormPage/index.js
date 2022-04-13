@@ -13,7 +13,7 @@ const NewHauntModal = () => {
         <>
             <button className='new-haunt-btn' onClick={() => setRenderModal(true)}>Add New Haunt</button>
             {renderModal ? (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='haunt-sizing-id' onClose={() => setRenderModal(false)}>
                     <NewHauntForm onClose={() => setRenderModal(false)} />
                 </FormModal>
                 ) : null

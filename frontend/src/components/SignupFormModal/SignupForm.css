@@ -11,3 +11,8 @@
     background-color: blue;
     color: white;
 }
+
+#signup-sizing-id {
+    width: 35vw;
+    height: 50vh;
+}

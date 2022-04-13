@@ -11,7 +11,7 @@ const DeleteHauntModal = ({spot}) => {
         <>
             <button className='delete-haunt-btn' onClick={() => setRenderModal(true)}>Delete Haunt</button>
             {renderModal ? (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='delete-haunt-sizing-id' onClose={() => setRenderModal(false)}>
                     <DeleteHauntForm spot={spot} />
                 </FormModal>
                 ) : null

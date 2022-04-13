@@ -11,3 +11,8 @@
     background-color: blue;
     color: white;
 }
+
+#login-sizing-id {
+    width: 32vw;
+    height: 44vh;
+}

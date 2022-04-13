@@ -71,7 +71,7 @@ const NewHauntForm = ({onClose}) => {
         <form className='new-haunt-form' onSubmit={(e) => handleSubmit(e)}>
             <ul>
                 {validationErrors?.map((err, i) => (
-                        <li key={i}>{err}</li>
+                        <li key={i} className='validation-error-message'>{err}</li>
                     ))}
             </ul>
             <label htmlFor='name' className='haunt-form-label'>

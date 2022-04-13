@@ -16,7 +16,7 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
 }
-#modal-content {
+.modal-content {
     position: absolute;
     background-color:white;
     width: 60%;

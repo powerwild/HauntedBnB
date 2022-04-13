@@ -46,7 +46,7 @@ const SignupForm = () => {
             <form className='signup-form' onSubmit={handleSubmit}>
                 <ul>
                     {validationErrors.length > 0 && validationErrors.map((err, i) => (
-                        <li key={i}>{err}</li>
+                        <li key={i} className='validation-error-message'>{err}</li>
                     ))}
                 </ul>
                 <label htmlFor='email' className='user-form-label'>

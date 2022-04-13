@@ -47,3 +47,7 @@ h1, h2, p:hover {
     background-color: lightgreen;
     border-radius: 5px;
 }
+
+.validation-error-message {
+    color: red;
+}

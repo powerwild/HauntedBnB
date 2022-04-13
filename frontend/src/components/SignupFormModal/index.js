@@ -11,7 +11,7 @@ const SignupFormModal = () => {
         <>
             <button className='login-btn button' onClick={() => setRenderModal(true)}>Sign Up</button>
             {renderModal ? (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='signup-sizing-id' onClose={() => setRenderModal(false)}>
                     <SignupForm />
                 </FormModal>
                 ) : null

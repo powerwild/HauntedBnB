@@ -19,9 +19,9 @@ export const postRevThunk = (review, userId, spotId) => async dispatch => {
     const newReviewJSON = await csrfFetch('/api/reviews', {method: 'POST', body: JSON.stringify({review, userId, spotId})});
     if (newReviewJSON.ok) {
         const newReview = await newReviewJSON.json();
-        dispatch(postRev(newReview))
-    }
-    return newReviewJSON;
+        if(!newReview?.errors) dispatch(postRev(newReview))
+        return newReview;
+    } else return await newReviewJSON.json()
 }
 
 
@@ -57,9 +57,9 @@ export const putRevThunk = (newReview) => async dispatch => {
     const updatedReviewJSON = await csrfFetch('/api/reviews', {method: 'PUT', body: JSON.stringify(newReview)})
     if (updatedReviewJSON.ok) {
         const updatedReview = await updatedReviewJSON.json();
-        dispatch(putRev(updatedReview))
+        if(!updatedReview?.errors) dispatch(putRev(updatedReview))
+        return updatedReview;
     }
-    return updatedReviewJSON;
 }
 
 

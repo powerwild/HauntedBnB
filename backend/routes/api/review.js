@@ -12,6 +12,8 @@ const validateReview = [
         .withMessage('Sorry there was an error. Please try again.'),
     check('review')
         .exists({checkFalsy: true})
+        .notEmpty()
+        .isLength({min: 5})
         .withMessage('Please provide a review.'),
     handleValidationErrors
 ]
@@ -25,21 +27,26 @@ router.route('/')
         })
         return res.json(myReviews)
     }))
-    .put(asyncHandler(async (req, res) => {
+    .put(asyncHandler(async (req, res, next) => {
         const newReview = req.body;
-        const oldReview = await db.Review.findByPk(newReview.id);
+        let oldReview = await db.Review.findByPk(newReview.id);
         oldReview.review = newReview.review;
         await oldReview.save();
+
         return res.json(oldReview);
     }))
-    .post(asyncHandler(async (req, res) => {
+    .post(validateReview, asyncHandler(async (req, res, next) => {
         const {userId, spotId, review} = req.body;
-
-        const newReview = await db.Review.create({
-            userId,
-            spotId,
-            review
-        })
+        let newReview;
+        try{
+            newReview = await db.Review.create({
+                userId,
+                spotId,
+                review
+            });
+        } catch (e) {
+            return next(e)
+        }
         return res.json(newReview);
     }))
     .delete(asyncHandler(async (req, res) => {

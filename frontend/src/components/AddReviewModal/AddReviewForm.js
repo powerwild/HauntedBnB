@@ -10,22 +10,28 @@ const AddReviewForm = ({onClose, id}) => {
     const [ validationErrors, setValidationErrors ] = useState([]);
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        return dispatch(postRevThunk(review, sessionUser.id, id)).then(() => onClose());
+        const newRev = await dispatch(postRevThunk(review, sessionUser.id, id));
+        if (newRev?.errors) return setValidationErrors(newRev.errors);
+        else return onClose();
     }
 
     useEffect(() => {
         let errors = [];
         if (review.length < 10) errors.push('Please provide a decent review.');
         setValidationErrors(errors);
-        return setValidationErrors([]);
     }, [review])
 
 
     return (
         <form className="add-review-form" onSubmit={handleSubmit}>
+            <ul>
+                {validationErrors?.map((err, i) => (
+                        <li key={i} className='validation-error-message'>{err}</li>
+                    ))}
+            </ul>
             <label className="review-form-field" htmlFor='add-review'>
                 Review
                 <textarea className="review-field" name='add-review' value={review} onChange={e => setReview(e.target.value)}/>

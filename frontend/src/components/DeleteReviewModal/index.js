@@ -10,7 +10,7 @@ const DeleteReviewModal = ({reviewId}) => {
         <>
             <button className='delete-review-btn' onClick={() => setRenderModal(true)}>Delete Review</button>
             {renderModal ? (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='delete-review-sizing-id' onClose={() => setRenderModal(false)}>
                     <DeleteReviewForm  onClose={() => setRenderModal(false)} reviewId={reviewId}/>
                 </FormModal>
                 ) : null

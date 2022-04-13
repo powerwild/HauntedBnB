@@ -17,6 +17,11 @@
     color: white;
 }
 
+#edit-haunt-sizing-id {
+    width: 35vw;
+    height: 50vh;
+}
+
 .edit-haunt-name {
 
 }
@@ -28,5 +33,3 @@
 .edit-haunt-description {
 
 }
-
-

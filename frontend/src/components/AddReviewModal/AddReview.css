@@ -31,3 +31,8 @@
     background-color: orange;
     color: black;
 }
+
+#review-sizing-id {
+    width: 35vw;
+    height: 50vh;
+}

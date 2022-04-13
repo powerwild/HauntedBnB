@@ -32,3 +32,8 @@
     background-color: blue;
     color: white;
 }
+
+#edit-review-sizing-id {
+    width: 35vw;
+    height: 50vh;
+}

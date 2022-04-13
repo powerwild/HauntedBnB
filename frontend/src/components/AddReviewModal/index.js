@@ -11,7 +11,7 @@ const AddReviewModal = ({ oldReview, id}) => {
         <>
             <button className='add-review-btn' onClick={() => setRenderModal(true)}>Add Review</button>
             {renderModal ? (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='review-sizing-id' onClose={() => setRenderModal(false)}>
                     <AddReviewForm onClose={() => setRenderModal(false)} oldReview={oldReview} id={id}/>
                 </FormModal>
                 ) : null

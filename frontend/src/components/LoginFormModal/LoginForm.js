@@ -38,7 +38,7 @@ const LoginForm = () => {
             <form className='login-form' onSubmit={handleSubmit}>
                 <ul>
                     {validationErrors?.map((err, i) => (
-                        <li key={i}>{err}</li>
+                        <li key={i} className='validation-error-message'>{err}</li>
                     ))}
                 </ul>
                 <label htmlFor='credential' className='user-form-label'>

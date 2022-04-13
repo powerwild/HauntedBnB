@@ -11,7 +11,7 @@ const EditReviewModal = ({verb, oldReview, spotId, userId}) => {
         <>
             <button className='edit-review-btn' onClick={() => setRenderModal(true)}>Edit Review</button>
             {renderModal ? (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='edit-review-sizing-id' onClose={() => setRenderModal(false)}>
                     <EditReviewForm onClose={() => setRenderModal(false)} verb={verb} oldReview={oldReview}/>
                 </FormModal>
                 ) : null

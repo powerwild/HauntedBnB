@@ -41,7 +41,7 @@ const EditHauntForm = ({spot, onClose}) => {
         <form className='edit-haunt-form' onSubmit={handleSubmit}>
             <ul>
                 {validationErrors?.map((err, i) => (
-                        <li key={i}>{err}</li>
+                        <li key={i} className='validation-error-message'>{err}</li>
                     ))}
             </ul>
             <label htmlFor='name' className='edit-haunt-name'>

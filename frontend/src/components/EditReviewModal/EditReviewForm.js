@@ -21,12 +21,16 @@ const EditReviewForm = ({onClose, oldReview}) => {
         let errors = [];
         if (review.length < 10) errors.push('Please provide a decent review.');
         setValidationErrors(errors);
-        return setValidationErrors([]);
     }, [review])
 
 
     return (
         <form className="edit-review-form" onSubmit={handleSubmit}>
+            <ul>
+                {validationErrors?.map((err, i) => (
+                    <li key={i} className='validation-error-message'>{err}</li>
+                ))}
+            </ul>
             <label className="edit-form-field" htmlFor='edit-review'>
                 Review
                 <textarea className="edit-field" name='edit-review' value={review} onChange={e => setReview(e.target.value)}/>

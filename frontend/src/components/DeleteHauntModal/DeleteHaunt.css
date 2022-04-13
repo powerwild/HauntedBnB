@@ -16,3 +16,8 @@
     background-color: red;
     color: white;
 }
+
+#delete-haunt-sizing-id {
+    width: 35vw;
+    height: 50vh;
+}

@@ -11,7 +11,7 @@ const EditHauntModal = ({spot}) => {
         <>
             <button className='edit-haunt-btn' onClick={() => setRenderModal(true)}>Update Haunt</button>
             {renderModal && (
-                <FormModal onClose={() => setRenderModal(false)}>
+                <FormModal id='edit-haunt-sizing-id' onClose={() => setRenderModal(false)}>
                     <EditHauntForm spot={spot} onClose={() => setRenderModal()}/>
                 </FormModal>
             )
