@@ -16,17 +16,16 @@ function App() {
   const dispatch = useDispatch();
   const [ pageRendered, setPageRendered ] = useState(false);
   const sessionUser = useSelector(state => state.session);
-  const haunts = useSelector(state => state.haunts);
 
   useEffect(() => {
     if (!sessionUser.user) {
       dispatch(restoreUserSessionThunk()).then(() => setPageRendered(true))
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (sessionUser.user) dispatch(getAllHauntsThunk());
-  }, [pageRendered])
+  }, [pageRendered, dispatch, sessionUser?.user])
 
   return (
     <>

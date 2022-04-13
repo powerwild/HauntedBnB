@@ -30,11 +30,11 @@ const Navigation = ({ pageRendered }) => {
         )
     }
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const trySearch = dispatch(performSearchThunk(searchQuery));
-        if (trySearch.ok) history.push('/search')
+        const trySearch = await dispatch(performSearchThunk(searchQuery));
+        if (trySearch) history.push('/search')
     }
 
 
@@ -57,7 +57,7 @@ const Navigation = ({ pageRendered }) => {
                     <NavLink className='home-nav' to='/'>HauntedBnB</NavLink>
                 </div>
                 <form className="search-bar-form" onSubmit={handleSearch}>
-                    <input type='text' name='search' className='search-bar' placeholder="Search Feature Coming Soon" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}/>
+                    <input type='text' name='search' className='search-bar' placeholder="Search by city, state or country" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}/>
                 </form>
                 <div className='user-btns-div'>
                     {pageRendered && userButtons}

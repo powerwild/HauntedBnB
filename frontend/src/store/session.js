@@ -72,12 +72,12 @@ const saveSearch = (results) => {
 }
 
 export const performSearchThunk = (query) => async dispatch => {
-    const resultsJson = csrfFetch(`/api/search/${query}`);
+    const resultsJson = await csrfFetch(`/api/search/${query}`);
     if (resultsJson.ok) {
-        const results = resultsJson.json();
+        const results = await resultsJson.json();
         dispatch(saveSearch(results));
+        return results;
     }
-    return resultsJson;
 }
 
 

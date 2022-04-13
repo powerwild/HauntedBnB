@@ -26,6 +26,9 @@ router.get('/:search', asyncHandler( async (req, res) => {
                 }
             ],
         },
+        include: {
+            model: db.Image
+        }
     });
     res.json(haunts);
 
