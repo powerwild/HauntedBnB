@@ -10,6 +10,7 @@ import { getAllHauntsThunk } from './store/haunts';
 import MyHauntsPage from "./components/HauntsPage/MyHauntsPage";
 import NotFound from "./components/NotFound";
 import SearchResultsPage from "./components/HauntsPage/SearchResults.Page";
+import AboutMe from "./components/AboutMe";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
+          {sessionUser?.user?.id && <AboutMe />}
         </>
       }
     </>
