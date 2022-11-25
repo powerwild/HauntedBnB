@@ -11,7 +11,7 @@
     "start:production": "node ./bin/www",
     "db:setup": "dotenv sequelize db:migrate && dotenv sequelize db:seed:all",
     "db:undo": "dotenv sequelize db:seed:undo:all && dotenv sequelize db:migrate:undo:all",
-    "build": "node psql-setup-scripts.js"
+    "build": "node psql-setup-script.js"
   },
   "keywords": [],
   "author": "",
