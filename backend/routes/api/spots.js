@@ -61,21 +61,6 @@ router.route('/')
             country,
             price
         });
-        // const imagesCopy = [];
-        // images.forEach(async image => {
-        //     await db.Image.create({
-        //         spotId: newSpot.id,
-        //         url: image
-        //     }).then((res) => imagesCopy.push(res))
-
-        // })
-        // console.log('***************************', imagesCopy)
-
-        // const newImages = await db.Image.findAll({ where: { spotId: newSpot.id } })
-        // console.log(newImages)
-
-        // console.log(spot)
-        // console.log(spot.Images)
         return res.json(spot);
     }));
 

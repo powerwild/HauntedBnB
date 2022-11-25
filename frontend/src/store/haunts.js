@@ -15,23 +15,6 @@ const addHaunt = (spot, images) => {
 }
 
 export const addHauntThunk = (spot, imagesArr) => async dispatch => {
-    // was causing a race condition
-    // csrfFetch('/api/spots', {
-    //         method: 'POST',
-    //         body: JSON.stringify(spot)
-    //     }).then(async (res) => {
-    //         const newSpot = await res.json();
-    //         const imagesJSON = csrfFetch('/api/images', {method: 'POST',
-    //             body: JSON.stringify({imagesArr, spotId: newSpot.id})
-    //             })
-    //         if (imagesJSON.ok) {
-    //             const images = await imagesJSON.json();
-    //             dispatch(addHaunt(newSpot, images));
-    //             console.log(images)
-    //             return images[0].spotId
-    //         }
-    //     })
-
     const newSpotJson = await csrfFetch('/api/spots', {
         method: 'POST',
         body: JSON.stringify(spot)
@@ -48,12 +31,6 @@ export const addHauntThunk = (spot, imagesArr) => async dispatch => {
             return newSpot.id;
         }
     }
-    // console.log(createdSpot)
-    // console.log(images)
-    // console.log(spot.newImages)
-    // await dispatch(addHaunt(spot, images));
-    // return createdSpot;
-
 }
 
 const getAllHaunts = (spots) => {

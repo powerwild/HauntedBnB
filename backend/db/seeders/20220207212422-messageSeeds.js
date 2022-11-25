@@ -1,5 +1,11 @@
 'use strict';
 
+let options = {};
+options.tableName = 'Messages';
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -8,7 +14,7 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkInsert('Messages', [
+   return queryInterface.bulkInsert(options, [
      {
        recipientId: 4,
        senderId: 1,
@@ -43,6 +49,6 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkDelete('Messages', null, {});
+   return queryInterface.bulkDelete(options);
   }
 };

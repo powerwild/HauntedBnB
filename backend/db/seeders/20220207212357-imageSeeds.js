@@ -1,5 +1,12 @@
 'use strict';
 
+let options = {};
+options.tableName = 'Images';
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -8,7 +15,7 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkInsert('Images', [
+   return queryInterface.bulkInsert(options, [
     {
       spotId: 1,
       url: 'https://s.hdnux.com/photos/01/12/13/74/19447552/3/rawImage.jpg'
@@ -39,6 +46,6 @@ module.exports = {
 
       Example:
       */
-   return queryInterface.bulkDelete('Images', null, {});
+   return queryInterface.bulkDelete(options);
   }
 };
